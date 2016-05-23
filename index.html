@@ -49,6 +49,16 @@
         word-wrap: break-word;
       }
 
+      /*Header */
+      .topinfo{
+        display: inline-block;
+        text-align: center;
+        width: 100%;
+        position: fixed;
+        height: 60px;
+        top: 0;
+      }
+
       /* Chat page */
 
       .chat {
@@ -82,6 +92,7 @@
         right:0;
         height: 100%;
         padding-bottom: 60px;
+        padding-top: 60px;
       }
 
       .messages {
@@ -103,7 +114,6 @@
       }
 
       /* Input */
-
       .inputMessage {
         border: 10px solid #000;
         bottom: 0;
@@ -115,11 +125,13 @@
         right: 0;
         width: 100%;
       }
-
-
     </style>
+
   </head>
   <body>
+    <div class="topinfo">
+      <h3>Hello</h3>
+    </div>
     <div class="chat">
       <div class="chatArea">
         <ul class="messages"></ul>
@@ -172,7 +184,7 @@
 
     socket.on('login', function(success){
       if(success[0]){
-        document.getElementById('successtext').innerHTML = 'Login Successful!'
+        document.getElementById('successtext').innerHTML = '<h4>Login Successful!'
         document.getElementById('successtext').style.color = 'lightgreen'
         setTimeout(function(){
           $('#myModal').modal('hide');
@@ -180,10 +192,10 @@
         },1500)
       }else{
         if(success[1] == 'wrongpass'){
-          document.getElementById('successtext').innerHTML = 'Login Unauthorized!'
+          document.getElementById('successtext').innerHTML = '<h4>Login Unauthorized!'
           document.getElementById('successtext').style.color = 'red'
         }else if(success[1] == 'tooshort'){
-          document.getElementById('successtext').innerHTML = 'Username and Password must contain at least 2 character!'
+          document.getElementById('successtext').innerHTML = '<h4>Username and Password must contain at least 2 character!'
           document.getElementById('successtext').style.color = 'red'
         }
       }
