@@ -18,7 +18,6 @@
         background-color: #000000;
         font: 15px Ubuntu, Ubuntu;
       }
-
       .modal-content {
         background-color: black;
       }
@@ -28,14 +27,109 @@
       #successtext {
         float: left;
       }
+      #chatroom {
+      }
+      /* Chat page */
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        -webkit-font-smoothing: antialiased;
+      }
+
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      ul {
+        list-style: none;
+        word-wrap: break-word;
+      }
+
+      /* Chat page */
+
+      .chat.page {
+        display: none;
+      }
+
+      /* Font */
+
+      .messages {
+        font-size: 150%;
+      }
+
+      .inputMessage {
+        color: black;
+        font-size: 100%;
+      }
+
+      .log {
+        color: gray;
+        font-size: 70%;
+        margin: 5px;
+        text-align: center;
+      }
+
+      /* Messages */
+
+      .chatArea {
+        height: 100%;
+        padding-bottom: 60px;
+      }
+
+      .messages {
+        height: 100%;
+        margin: 0;
+        overflow-y: scroll;
+        padding: 10px 20px 10px 20px;
+      }
+
+      .message.typing .messageBody {
+        color: gray;
+      }
+
+      .username {
+        font-weight: 700;
+        overflow: hidden;
+        padding-right: 15px;
+        text-align: right;
+      }
+
+      /* Input */
+
+      .inputMessage {
+        border: 10px solid #000;
+        bottom: 0;
+        height: 60px;
+        left: 0;
+        outline: none;
+        padding-left: 10px;
+        position: absolute;
+        right: 0;
+        width: 100%;
+      }
+
+
     </style>
   </head>
   <body>
+    <div id="chatroom">
+      <li class="chat page">
+        <div class="chatArea">
+          <ul class="messages"></ul>
+        </div>
+        <input class="inputMessage" placeholder="Give Input"/>
+      </li>
+    </div>
+
     <!-- Trigger the modal with a button
     <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
     --->
     <!-- Modal -->
-    fuck
     <div id="myModal" class="modal fade" role="dialog">
       <div class="modal-dialog">
         <!-- Modal content-->
@@ -61,6 +155,7 @@
         </div>
       </div>
     </div>
+
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -80,7 +175,8 @@
         document.getElementById('successtext').innerHTML = 'Login Successful!'
         document.getElementById('successtext').style.color = 'lightgreen'
         setTimeout(function(){
-          $('#myModal').modal('hide')
+          $('#myModal').modal('hide');
+          $('.chat.page').fadeIn(2000);
         },1500)
       }else{
         if(success[1] == 'wrongpass'){
