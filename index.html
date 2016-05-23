@@ -42,7 +42,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h2 class="modal-title">Welcome to Chat.io!</h2>
+            <h2 class="modal-title">Welcome to chat.io!</h2>
           </div>
           <div class="modal-body">
             <h4>Create a username and password OR login with your already existing credentials.</h4>
@@ -55,7 +55,7 @@
               </fieldset>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" id='loginbut' type="submit">Login</button>
+            <button type="button" class="btn btn-warning" id='loginbut' type="submit">Login</button>
             <div id='successtext'></div>
           </div>
         </div>
@@ -76,15 +76,21 @@
     var socket = io.connect(window.location.hostname);
 
     socket.on('login', function(success){
-      if(success){
+      console.log(success)
+      if(success[0]){
         document.getElementById('successtext').innerHTML = 'Login Successful!'
         document.getElementById('successtext').style.color = 'lightgreen'
         setTimeout(function(){
           $('#myModal').modal('hide')
         },1500)
       }else{
-        document.getElementById('successtext').innerHTML = 'Login Unauthorized!'
-        document.getElementById('successtext').style.color = 'red'
+        if(success[1] == 'wrongpass'){
+          document.getElementById('successtext').innerHTML = 'Login Unauthorized!'
+          document.getElementById('successtext').style.color = 'red'
+        }else if(success[1] == 'tooshort'){
+          document.getElementById('successtext').innerHTML = 'Username and Password must contain at least 2 character!'
+          document.getElementById('successtext').style.color = 'red'
+        }
       }
     });
   

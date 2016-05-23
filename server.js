@@ -28,6 +28,9 @@ app.get('/', function(req, res) {
 var port = process.env.PORT || 3000;
 http.listen(port);
 
+/*Logs
+ */
+
 // contains a list of all chat that goes on in a room
 var chatlog = []
 
@@ -37,7 +40,7 @@ var allUsers = []
 // list of logged in users
 var regiOnline = []
 
-// list of registered users and passwords
+// list of registered users and passwords (should be in database)
 var registered = {}
 
 
@@ -69,20 +72,22 @@ io.on('connection', function(socket){
   socket.on('disconnect', function(){
     var i = allUsers.indexOf(socket);
     allUsers.splice(i, 1);
-    console.log(allUsers.length)
   });
 
   //handle login requestion
   socket.on('login', function(creds){
     usr = creds[0]
     pas = creds[1]
-    //if user is new, or password is correct, log the pass word and return true
-    if(registered[usr] == undefined || registered[usr] == pas) {
+    if(usr.length < 2 || pas.length <2){
+      //too short
+      socket.emit('login', [false, 'tooshort'])
+    }else if(registered[usr] == undefined || registered[usr] == pas) {
+      //legal
       registered[usr] = pas;
-      socket.emit('login', true)
+      socket.emit('login', [true, ''])
     }else{
-      //otherwise, login failed
-      socket.emit('login', false)
+      //wrong pass
+      socket.emit('login', [false, 'wrongpass'])
     }
   });
 });
