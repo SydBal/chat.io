@@ -5,16 +5,28 @@
 var express = require('express'),
     path =require('path'),
     app = express(),
-    http = require('http').Server(app)
+    http = require('http').createServer(app),
+    path = require('path')
     io = require('socket.io')(http);
 
-//Serve contents of /public
-app.use("/public", express.static(path.join(__dirname, 'public')));
 
-//Send index.html on connect (hopefully the only html)
-app.get('/', function(req, res){
-  res.sendFile(__dirname + '/index.html');
+io.use(function(socket, next) {
+  var handshakeData = socket.request;
+  // make sure the handshake data looks good as before
+  // if error do this:
+    // next(new Error('not authorized');
+  // else just call next
+  next();
 });
+
+// Serve index
+app.get('/', function(req, res) {
+  res.sendFile(path.join(__dirname + '/index.html'));
+});
+
+//for heroku
+var port = process.env.PORT || 3000;
+http.listen(port);
 
 // contains a list of all chat that goes on in a room
 var chatlog = []
@@ -27,6 +39,8 @@ var regiOnline = []
 
 // list of registered users and passwords
 var registered = {}
+
+
 
 io.on('connection', function(socket){
 
