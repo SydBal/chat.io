@@ -76,7 +76,6 @@
     var socket = io.connect(window.location.hostname);
 
     socket.on('login', function(success){
-      console.log(success)
       if(success[0]){
         document.getElementById('successtext').innerHTML = 'Login Successful!'
         document.getElementById('successtext').style.color = 'lightgreen'

@@ -35,7 +35,7 @@ http.listen(port);
 var chatlog = []
 
 // list of current users
-var allUsers = []
+var allUsers = {}
 
 // list of logged in users
 var regiOnline = []
@@ -48,13 +48,17 @@ var registered = {}
 io.on('connection', function(socket){
 
   //Give the socket an initial nickname, mirroring its id
-  socket.nickname = socket.id
+  socket.nickname = socket.id;
 
   //add user to list of connected users
-  allUsers.push(socket)
+  allUsers[socket.id] = socket;
 
   //log the number of users connected
-  console.log(allUsers.length)
+  var len = 0;
+  for (var users in allUsers) {
+      len++;
+  }
+  console.log('# of connected users: '+len);
 
   //sends to everyone
   io.emit('chat message', socket.id + " connected to chat!")
@@ -70,8 +74,12 @@ io.on('connection', function(socket){
 
   // handle disconnecting users
   socket.on('disconnect', function(){
-    var i = allUsers.indexOf(socket);
-    allUsers.splice(i, 1);
+    delete allUsers[socket.id];
+    var len = 0;
+    for (var users in allUsers) {
+        len++;
+    }
+    console.log('# of connected users: '+len);
   });
 
   //handle login requestion
@@ -84,6 +92,8 @@ io.on('connection', function(socket){
     }else if(registered[usr] == undefined || registered[usr] == pas) {
       //legal
       registered[usr] = pas;
+      socket.nickname = usr;
+      allUsers[socket.id] = socket;
       socket.emit('login', [true, ''])
     }else{
       //wrong pass
