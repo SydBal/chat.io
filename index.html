@@ -1,0 +1,119 @@
+<!-- Dominic Balassone
+     First attempt at a socket.io chatroom
+  -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="Be social">
+    <meta name="author" content="Dominic Balassone">
+    <title>chat.io</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <style>
+      body {
+        color: #FFFFFF;
+        background-color: #000000;
+        font: 15px Ubuntu, Ubuntu;
+      }
+
+      .modal-content {
+        background-color: black;
+      }
+      .modal-backdrop {
+        background-color: white;
+      }
+      #successtext {
+        float: left;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Trigger the modal with a button
+    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+    --->
+    <!-- Modal -->
+    fuck
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h2 class="modal-title">Welcome to Chat.io!</h2>
+          </div>
+          <div class="modal-body">
+            <h4>Create a username and password OR login with your already existing credentials.</h4>
+            <form>
+              <fieldset class="form-group">
+                <input type="email" class="form-control" id="InputEmail" placeholder="Username">
+              </fieldset>
+              <fieldset class="form-group">
+                <input type="password" class="form-control" id="InputPassword" placeholder="Password">
+              </fieldset>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" id='loginbut' type="submit">Login</button>
+            <div id='successtext'></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <!-- Socket.io -->
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <!-- My JS -->
+    <script>
+    //Socket stuff
+    var socket = io();
+
+    socket.on('login', function(success){
+      if(success){
+        document.getElementById('successtext').innerHTML = 'Login Successful!'
+        document.getElementById('successtext').style.color = 'lightgreen'
+        setTimeout(function(){
+          $('#myModal').modal('hide')
+        },1500)
+      }else{
+        document.getElementById('successtext').innerHTML = 'Login Unauthorized!'
+        document.getElementById('successtext').style.color = 'red'
+      }
+    });
+  
+    //on page load
+    $(window).load(function(){
+      $('#myModal').modal('show');
+    });
+
+    //try to login via socket when clicking on login button
+    $('#loginbut').on('click', function(event) {
+      socket.emit('login', [$('#InputEmail').val(), $('#InputPassword').val()])
+      document.getElementById('successtext').innerHTML = 'Contacting Server...'
+      document.getElementById('successtext').style.color = 'yellow'
+    });;
+
+    //set login modal to be unexitable
+    $('#myModal').modal({
+      backdrop: 'static',
+      keyboard: false
+    });
+
+    //set enter to be the submit key for login modal
+    $("input").keypress(function(event) {
+      if($('#myModal').is(":visible")){
+        if (event.which == 13) {
+          socket.emit('login', [$('#InputEmail').val(), $('#InputPassword').val()])
+        }
+      }
+    });
+    </script>
+  </body>
+</html>
