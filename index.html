@@ -27,8 +27,7 @@
       #successtext {
         float: left;
       }
-      #chatroom {
-      }
+
       /* Chat page */
 
       * {
@@ -52,7 +51,7 @@
 
       /* Chat page */
 
-      .chat.page {
+      .chat {
         display: none;
       }
 
@@ -77,6 +76,10 @@
       /* Messages */
 
       .chatArea {
+        position: fixed;
+        width: 100%;
+        left: 0;
+        right:0;
         height: 100%;
         padding-bottom: 60px;
       }
@@ -108,7 +111,7 @@
         left: 0;
         outline: none;
         padding-left: 10px;
-        position: absolute;
+        position: fixed;
         right: 0;
         width: 100%;
       }
@@ -117,15 +120,12 @@
     </style>
   </head>
   <body>
-    <div id="chatroom">
-      <li class="chat page">
-        <div class="chatArea">
-          <ul class="messages"></ul>
-        </div>
-        <input class="inputMessage" placeholder="Give Input"/>
-      </li>
+    <div class="chat">
+      <div class="chatArea">
+        <ul class="messages"></ul>
+      </div>
+      <input class="inputMessage" placeholder="Give Input"/>
     </div>
-
     <!-- Trigger the modal with a button
     <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
     --->
@@ -176,7 +176,7 @@
         document.getElementById('successtext').style.color = 'lightgreen'
         setTimeout(function(){
           $('#myModal').modal('hide');
-          $('.chat.page').fadeIn(2000);
+          $('.chat').fadeIn(2000);
         },1500)
       }else{
         if(success[1] == 'wrongpass'){
