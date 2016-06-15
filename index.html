@@ -23,11 +23,19 @@
 
     <!-- Custom CSS -->
     <style type="text/css">
+      body {
+        padding-top: 60px;
+      }
+      @media (max-width: 979px) {
+        body {
+          padding-top: 0px;
+        }
+      }
+
       #successtext {
         float: left;
         padding-left: 18px;
-        padding-bottom: 10px;
-        font-weight: bold;
+        margin-bottom: 7px;
       }
               
       #inputMessage{
@@ -35,6 +43,11 @@
         bottom: 0;
         width: 100%;
         padding-bottom: 18px;
+      }
+
+      #loginbut{
+        margin-bottom: 10px;
+        margin-right: 10px;
       }
     </style>
   </head>
@@ -128,7 +141,7 @@
           </div>
           <div class="modal-footer">
             <div id='successtext'></div>
-            <button type="button" class="btn btn-warning" id='loginbut' type="submit">Login</button>
+            <button type="button" class="btn btn-primary" id='loginbut' type="submit">Login</button>
           </div>
         </div>
       </div>
@@ -158,7 +171,7 @@
 
     socket.on('login', function(success){
       if(success[0]){
-        document.getElementById('successtext').innerHTML = '<h4>Login Successful!'
+        document.getElementById('successtext').innerHTML = '<h4><strong>Login Successful!<strong></h4>'
         document.getElementById('successtext').style.color = 'lightgreen'
         setTimeout(function(){
           $('#myModal').modal('hide');
@@ -168,10 +181,10 @@
         },1500)
       }else{
         if(success[1] == 'wrongpass'){
-          document.getElementById('successtext').innerHTML = '<h4>Login Unauthorized!'
+          document.getElementById('successtext').innerHTML = '<h4><strong>Login Unauthorized!</strong></h4>'
           document.getElementById('successtext').style.color = 'red'
         }else if(success[1] == 'tooshort'){
-          document.getElementById('successtext').innerHTML = '<h4>Username and Password must contain at least 2 characters!'
+          document.getElementById('successtext').innerHTML = '<h4><strong>Username and Password must contain at least 2 characters!</strong></h4>'
           document.getElementById('successtext').style.color = 'red'
         }
       }
@@ -199,7 +212,7 @@
     //try to login via socket when clicking on login button
     $('#loginbut').on('click', function(event) {
       socket.emit('login', [$('#InputEmail').val(), $('#InputPassword').val()])
-      document.getElementById('successtext').innerHTML = 'Contacting Server...'
+      document.getElementById('successtext').innerHTML = '<h4><strong>Contacting Server...</strong></h4>'
       document.getElementById('successtext').style.color = 'yellow'
     });;
 
@@ -214,6 +227,8 @@
       if($('#myModal').is(":visible")){
         if (event.which == 13) {
           socket.emit('login', [$('#InputEmail').val(), $('#InputPassword').val()])
+          document.getElementById('successtext').innerHTML = '<h4><strong>Contacting Server...</strong></h4>'
+          document.getElementById('successtext').style.color = 'yellow'
         }
       }
     });
