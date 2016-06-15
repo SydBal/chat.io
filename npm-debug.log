@@ -7,7 +7,7 @@
 6 silly lifecycle socket-chat-example@0.0.1~prestart: no script for prestart, continuing
 7 info lifecycle socket-chat-example@0.0.1~start: socket-chat-example@0.0.1
 8 verbose lifecycle socket-chat-example@0.0.1~start: unsafe-perm in lifecycle true
-9 verbose lifecycle socket-chat-example@0.0.1~start: PATH: /usr/share/npm/bin/node-gyp-bin:/home/dxm/Documents/nodeApps/chat.io/node_modules/.bin:/usr/local/heroku/bin:/home/dxm/.rvm/gems/ruby-2.3.0/bin:/home/dxm/.rvm/gems/ruby-2.3.0@global/bin:/home/dxm/.rvm/rubies/ruby-2.3.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/dxm/.rvm/bin:/home/dxm/.rvm/bin
+9 verbose lifecycle socket-chat-example@0.0.1~start: PATH: /usr/share/npm/bin/node-gyp-bin:/home/dxm/Documents/nodeApps/chat.io/node_modules/.bin:/home/dxm/.rvm/gems/ruby-2.3.0/bin:/home/dxm/.rvm/gems/ruby-2.3.0@global/bin:/home/dxm/.rvm/rubies/ruby-2.3.0/bin:/usr/local/heroku/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/dxm/.rvm/bin
 10 verbose lifecycle socket-chat-example@0.0.1~start: CWD: /home/dxm/Documents/nodeApps/chat.io
 11 silly lifecycle socket-chat-example@0.0.1~start: Args: [ '-c', 'node server.js' ]
 12 silly lifecycle socket-chat-example@0.0.1~start: Returned: code: 1  signal: null

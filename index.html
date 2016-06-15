@@ -1,5 +1,5 @@
-<!-- Dominic Balassone
-     First attempt at a socket.io chatroom
+<!--  Dominic Balassone
+      First attempt at a socket.io chatroom
   -->
 <html lang="en">
   <head>
@@ -10,146 +10,101 @@
     <meta name="description" content="Be social">
     <meta name="author" content="Dominic Balassone">
     <title>chat.io</title>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <style>
-      body {
-        color: #FFFFFF;
-        background-color: #000000;
-        font: 15px Ubuntu, Ubuntu;
-      }
-      .modal-content {
-        background-color: black;
-      }
-      .modal-backdrop {
-        background-color: white;
-      }
+    <!-- Material Design fonts -->
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/icon?family=Material+Icons">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+    <!-- Bootstrap Material Design -->
+    <link rel="stylesheet" type="text/css" href="/scripts/css/bootstrap-material-design.css">
+    <link rel="stylesheet" type="text/css" href="/scripts/css/ripples.min.css">
+
+    <!-- Custom CSS -->
+    <style type="text/css">
       #successtext {
         float: left;
+        padding-left: 18px;
+        padding-bottom: 10px;
+        font-weight: bold;
       }
-
-      /* Chat page */
-
-      * {
-        box-sizing: border-box;
-      }
-
-      html {
-        -webkit-font-smoothing: antialiased;
-      }
-
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-
-      ul {
-        list-style: none;
-        word-wrap: break-word;
-      }
-
-      /*Header */
-      .topinfo{
-        opacity: 0;
-        display: none;
-        width: 100%;
+              
+      #inputMessage{
         position: fixed;
-        height: 60px;
-        top: 0;
-      }
-
-      .lefthead {
-        float: left;
-        padding-left: 5px;
-      }
-
-      .righthead {
-        float: right;
-        padding-top: 5px;
-        padding-right: 5px;
-      }
-
-      /* Chat page */
-
-      .chat {
-        display: none;
-      }
-
-      /* Font */
-
-      .messages {
-        font-size: 150%;
-      }
-
-      .inputMessage {
-        color: black;
-        font-size: 100%;
-      }
-
-      .log {
-        color: gray;
-        font-size: 70%;
-        margin: 5px;
-        text-align: center;
-      }
-
-      /* Messages */
-
-      .chatArea {
-        position: fixed;
-        width: 100%;
-        left: 0;
-        right:0;
-        height: 100%;
-        padding-bottom: 60px;
-        padding-top: 60px;
-      }
-
-      .messages {
-        height: 100%;
-        margin: 0;
-        overflow-y: auto;
-        padding: 10px 20px 10px 20px;
-      }
-
-      .message.typing .messageBody {
-        color: gray;
-      }
-
-      .username {
-        font-weight: 700;
-        overflow: hidden;
-        padding-right: 15px;
-        text-align: right;
-      }
-
-      /* Input */
-      .inputMessage {
-        border: 10px solid #000;
         bottom: 0;
-        height: 60px;
-        left: 0;
-        outline: none;
-        padding-left: 10px;
-        position: fixed;
-        right: 0;
         width: 100%;
+        padding-bottom: 18px;
       }
     </style>
-
   </head>
+
   <body>
-    <div class="topinfo">
-      <div class="lefthead"> <h4> Main Lobby </h4></div>
-      <div class="righthead"> <button type="button" class="btn btn-warning">Menu?</button></div>
+    <!-- NavBar -->
+    <div class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="javascript:void(0)">chat.io</a>
+        </div>
+        <div class="navbar-collapse collapse navbar-responsive-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="javascript:void(0)">Active</a></li>
+            <li><a href="javascript:void(0)">Link</a></li>
+            <li class="dropdown">
+              <a href="http://fezvrasta.github.io/bootstrap-material-design/bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown
+                <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="javascript:void(0)">Action</a></li>
+                <li><a href="javascript:void(0)">Another action</a></li>
+                <li><a href="javascript:void(0)">Something else here</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Dropdown header</li>
+                <li><a href="javascript:void(0)">Separated link</a></li>
+                <li><a href="javascript:void(0)">One more separated link</a></li>
+              </ul>
+            </li>
+          </ul>
+          <form class="navbar-form navbar-left">
+            <div class="form-group">
+              <input type="text" class="form-control col-sm-8" placeholder="Search">
+            </div>
+          </form>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="javascript:void(0)">Link</a></li>
+            <li class="dropdown">
+              <a href="http://fezvrasta.github.io/bootstrap-material-design/bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown
+                <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="javascript:void(0)">Action</a></li>
+                <li><a href="javascript:void(0)">Another action</a></li>
+                <li><a href="javascript:void(0)">Something else here</a></li>
+                <li class="divider"></li>
+                <li><a href="javascript:void(0)">Separated link</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
+
+    <!-- Main View -->
     <div class="chat">
       <div class="chatArea">
         <ul class="messages"></ul>
       </div>
-      <input class="inputMessage" placeholder="Give Input"/>
+      <div id="inputMessage" class="form-group label-floating">
+        <label for="555" class="control-label">Give your input...</label>
+        <input type="text" class="form-control" id="555">
+
+        <p class="help-block">Have fun chatting!</p>
+      </div>
     </div>
+
     <!-- Trigger the modal with a button
     <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
     --->
@@ -159,7 +114,6 @@
         <!-- Modal content-->
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
             <h2 class="modal-title">Welcome to chat.io!</h2>
           </div>
           <div class="modal-body">
@@ -173,12 +127,17 @@
               </fieldset>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-warning" id='loginbut' type="submit">Login</button>
             <div id='successtext'></div>
+            <button type="button" class="btn btn-warning" id='loginbut' type="submit">Login</button>
           </div>
         </div>
       </div>
     </div>
+
+
+
+
+
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -189,6 +148,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <!-- Socket.io -->
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <!-- Material -->
+    <script type="text/javascript" src="/scripts/js/material.min.js"></script>
+    <script type="text/javascript" src="/scripts/js/ripples.min.js"></script>
     <!-- My JS -->
     <script>
     //Socket stuff
@@ -209,7 +171,7 @@
           document.getElementById('successtext').innerHTML = '<h4>Login Unauthorized!'
           document.getElementById('successtext').style.color = 'red'
         }else if(success[1] == 'tooshort'){
-          document.getElementById('successtext').innerHTML = '<h4>Username and Password must contain at least 2 character!'
+          document.getElementById('successtext').innerHTML = '<h4>Username and Password must contain at least 2 characters!'
           document.getElementById('successtext').style.color = 'red'
         }
       }
@@ -226,6 +188,12 @@
     //on page load
     $(window).load(function(){
       $('#myModal').modal('show');
+    })
+    //on ready
+    $(document).ready(function(){
+      $.material.init()
+      $('.dropdown-toggle').dropdown();
+
     });
 
     //try to login via socket when clicking on login button
