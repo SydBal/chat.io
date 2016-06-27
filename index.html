@@ -54,13 +54,14 @@
         margin-bottom: 10px;
         margin-right: 10px;
       }
+
     </style>
   </head>
 
   <body>
     <div id="wrapper">
     <!-- NavBar -->
-    <div class="navbar navbar-default">
+    <div class="navbar navbar-default navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
           <button id="menutoggle" style="right:0;margin-right:5px;z-index:1001;position:fixed;margin-top:7px;" type="button" class="btn btn-raised btn-success navbar-btn">
@@ -116,7 +117,6 @@
  */
 
 /* Toggle Styles */
-
 #sidebar-wrapper {
     display: none;
     z-index: 1000;
@@ -151,7 +151,6 @@
 }
 
 /* Sidebar Styles */
-
 .sidebar-nav {
     position: absolute;
     top: 0;
@@ -198,23 +197,6 @@
     background: none;
 }
 
-@media(min-width:768px) {
-
-
-    #wrapper.toggled #sidebar-wrapper {
-        width: 0;
-    }
-
-    #page-content-wrapper {
-        padding: 20px;
-        position: relative;
-    }
-
-    #wrapper.toggled #page-content-wrapper {
-        position: relative;
-        margin-right: 0;
-    }
-}
 </style>
     <!-- Main View -->
       <!-- Sidebar -->
