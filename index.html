@@ -57,10 +57,8 @@
     <div class="navbar navbar-default">
       <div class="container-fluid">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
+          <button id="menutoggle" style="float:right;margin-right:5px;" type="button" class="btn btn-raised btn-success navbar-btn">
+            <<
           </button>
           <a class="navbar-brand" href="javascript:void(0)">chat.io</a>
         </div>
@@ -113,23 +111,12 @@
 
 /* Toggle Styles */
 
-#wrapper {
-    padding-left: 0;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
-}
-
-#wrapper.toggled {
-    padding-left: 250px;
-}
-
 #sidebar-wrapper {
+    display: none;
     z-index: 1000;
     position: fixed;
     right: 0px;
-    width: 0;
+    width: 250px;
     height: 100%;
     margin-left: -250px;
     margin-top: -20px;
@@ -153,7 +140,7 @@
 
 #wrapper.toggled #page-content-wrapper {
     position: absolute;
-    margin-right: -250px;
+    margin-right: 0px;
 }
 
 /* Sidebar Styles */
@@ -205,17 +192,7 @@
 }
 
 @media(min-width:768px) {
-    #wrapper {
-        padding-left: 250px;
-    }
 
-    #wrapper.toggled {
-        padding-left: 0;
-    }
-
-    #sidebar-wrapper {
-        width: 250px;
-    }
 
     #wrapper.toggled #sidebar-wrapper {
         width: 0;
@@ -389,6 +366,14 @@
           document.getElementById('successtext').style.color = 'yellow'
         }
       }
+    });
+
+    //sidebar toggle
+    $("#menutoggle").click(function() {
+
+      $("#sidebar-wrapper").toggle();
+      console.log($("#menutoggle").text())
+
     });
     </script>
   </body>
