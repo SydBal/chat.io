@@ -1,0 +1,94 @@
+2016-06-15T23:05:58.975308949 0.281493s notice: Recursively removing directory /home/dxm/Documents/nodeApps/chat.io/rethinkdb_data/tmp
+2016-06-15T23:05:59.004033765 0.310217s notice: Initializing directory /home/dxm/Documents/nodeApps/chat.io/rethinkdb_data
+2016-06-15T23:05:59.004173010 0.310356s info: Creating a default database for your convenience. (This is because you ran 'rethinkdb' without 'create', 'serve', or '--join', and the directory '/home/dxm/Documents/nodeApps/chat.io/rethinkdb_data' did not already exist or is empty.)
+2016-06-15T23:05:59.018647449 0.324831s notice: Running rethinkdb 2.2.6 (GCC 5.2.1)...
+2016-06-15T23:05:59.044555786 0.350745s notice: Running on Linux 4.4.0-24-generic x86_64
+2016-06-15T23:05:59.044679124 0.350862s notice: Loading data from directory /home/dxm/Documents/nodeApps/chat.io/rethinkdb_data
+2016-06-15T23:05:59.358549564 0.664733s info: Automatically using cache size of 626 MB
+2016-06-15T23:05:59.360798964 0.666982s notice: Listening for intracluster connections on port 29015
+2016-06-15T23:05:59.397592074 0.703775s notice: Listening for client driver connections on port 28015
+2016-06-15T23:05:59.397948089 0.704131s notice: Listening for administrative HTTP connections on port 8080
+2016-06-15T23:05:59.397952871 0.704136s notice: Listening on addresses: 127.0.0.1, 127.0.1.1, ::1
+2016-06-15T23:05:59.397953680 0.704136s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2016-06-15T23:05:59.397957223 0.704140s notice: Server ready, "anycoloryoulike_zva" c64cdff7-13ab-4f0e-9d84-d14446a76dfa
+2016-06-15T23:05:59.990538811 1.296722s notice: A newer version of the RethinkDB server is available: 2.3.4. You can read the changelog at <https://github.com/rethinkdb/rethinkdb/releases>.
+2016-06-15T23:06:06.886029808 8.192213s notice: Server got SIGINT from pid 0, uid 0; shutting down...
+2016-06-15T23:06:06.886295742 8.192479s notice: Shutting down client connections...
+2016-06-15T23:06:06.886411063 8.192594s notice: All client connections closed.
+2016-06-15T23:06:06.886417168 8.192600s notice: Shutting down storage engine... (This may take a while if you had a lot of unflushed data in the writeback cache.)
+2016-06-15T23:06:06.998556789 8.304740s notice: Storage engine shut down.
+2016-06-15T23:06:12.378691242 0.342863s notice: Running rethinkdb 2.2.6 (GCC 5.2.1)...
+2016-06-15T23:06:12.386628613 0.350802s notice: Running on Linux 4.4.0-24-generic x86_64
+2016-06-15T23:06:12.386672457 0.350844s notice: Loading data from directory /home/dxm/Documents/nodeApps/chat.io/rethinkdb_data
+2016-06-15T23:06:12.488940150 0.453112s info: Automatically using cache size of 637 MB
+2016-06-15T23:06:12.490650139 0.454822s notice: Listening for intracluster connections on port 29015
+2016-06-15T23:06:12.493709831 0.457882s notice: Listening for client driver connections on port 28015
+2016-06-15T23:06:12.494053295 0.458225s notice: Listening for administrative HTTP connections on port 8080
+2016-06-15T23:06:12.494059081 0.458230s notice: Listening on addresses: 127.0.0.1, 127.0.1.1, ::1
+2016-06-15T23:06:12.494060135 0.458232s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2016-06-15T23:06:12.494064072 0.458235s notice: Server ready, "anycoloryoulike_zva" c64cdff7-13ab-4f0e-9d84-d14446a76dfa
+2016-06-15T23:06:12.917814489 0.881986s notice: A newer version of the RethinkDB server is available: 2.3.4. You can read the changelog at <https://github.com/rethinkdb/rethinkdb/releases>.
+2016-06-15T23:06:20.405714541 8.369886s notice: Server got SIGINT from pid 0, uid 0; shutting down...
+2016-06-15T23:06:20.405928973 8.370101s notice: Shutting down client connections...
+2016-06-15T23:06:20.406023612 8.370195s notice: All client connections closed.
+2016-06-15T23:06:20.406028983 8.370200s notice: Shutting down storage engine... (This may take a while if you had a lot of unflushed data in the writeback cache.)
+2016-06-15T23:06:20.406484118 8.370656s notice: Storage engine shut down.
+2016-06-15T23:08:27.402743838 0.215061s notice: Running rethinkdb 2.2.6 (GCC 5.2.1)...
+2016-06-15T23:08:27.408258777 0.220580s notice: Running on Linux 4.4.0-24-generic x86_64
+2016-06-15T23:08:27.408355486 0.220672s notice: Loading data from directory /home/dxm/Documents/nodeApps/chat.io/rethinkdb_data
+2016-06-15T23:08:27.533691465 0.346008s info: Automatically using cache size of 635 MB
+2016-06-15T23:08:27.535708851 0.348026s notice: Listening for intracluster connections on port 29015
+2016-06-15T23:08:27.537719426 0.350036s notice: Listening for client driver connections on port 28015
+2016-06-15T23:08:27.538035816 0.350353s notice: Listening for administrative HTTP connections on port 8080
+2016-06-15T23:08:27.538040981 0.350358s notice: Listening on addresses: 127.0.0.1, 127.0.1.1, ::1
+2016-06-15T23:08:27.538042131 0.350359s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2016-06-15T23:08:27.538046101 0.350363s notice: Server ready, "anycoloryoulike_zva" c64cdff7-13ab-4f0e-9d84-d14446a76dfa
+2016-06-15T23:08:27.958896506 0.771214s notice: A newer version of the RethinkDB server is available: 2.3.4. You can read the changelog at <https://github.com/rethinkdb/rethinkdb/releases>.
+2016-06-15T23:08:35.579625654 8.391943s notice: Server got SIGINT from pid 0, uid 0; shutting down...
+2016-06-15T23:08:35.579835441 8.392152s notice: Shutting down client connections...
+2016-06-15T23:08:35.579940749 8.392257s notice: All client connections closed.
+2016-06-15T23:08:35.579945152 8.392262s notice: Shutting down storage engine... (This may take a while if you had a lot of unflushed data in the writeback cache.)
+2016-06-15T23:08:35.580401314 8.392718s notice: Storage engine shut down.
+2016-06-15T23:08:37.989973449 0.275651s notice: Running rethinkdb 2.2.6 (GCC 5.2.1)...
+2016-06-15T23:08:37.996701826 0.282381s notice: Running on Linux 4.4.0-24-generic x86_64
+2016-06-15T23:08:37.996743723 0.282421s notice: Loading data from directory /home/dxm/Documents/nodeApps/chat.io/rethinkdb_data
+2016-06-15T23:08:38.199431378 0.485109s info: Automatically using cache size of 636 MB
+2016-06-15T23:08:38.199827455 0.485505s notice: Listening for intracluster connections on port 29015
+2016-06-15T23:08:38.200627987 0.486305s notice: Listening for client driver connections on port 28015
+2016-06-15T23:08:38.200736669 0.486414s notice: Listening for administrative HTTP connections on port 8080
+2016-06-15T23:08:38.200738537 0.486416s notice: Listening on addresses: 127.0.0.1, 127.0.1.1, ::1
+2016-06-15T23:08:38.200738909 0.486416s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2016-06-15T23:08:38.200740344 0.486417s notice: Server ready, "anycoloryoulike_zva" c64cdff7-13ab-4f0e-9d84-d14446a76dfa
+2016-06-15T23:08:38.618542068 0.904220s notice: A newer version of the RethinkDB server is available: 2.3.4. You can read the changelog at <https://github.com/rethinkdb/rethinkdb/releases>.
+2016-06-15T23:09:47.883370931 70.169049s info: Table 4b56d380-cf1d-4420-9853-01c7c756e999: Added replica on this server.
+2016-06-15T23:09:49.365371470 71.651049s info: Table 4b56d380-cf1d-4420-9853-01c7c756e999: Starting a new Raft election for term 1.
+2016-06-15T23:09:49.521425520 71.807103s info: Table 4b56d380-cf1d-4420-9853-01c7c756e999: This server is Raft leader for term 1. Latest log index is 0.
+2016-06-15T23:11:23.343818669 165.629496s notice: Removing file /home/dxm/Documents/nodeApps/chat.io/rethinkdb_data/4b56d380-cf1d-4420-9853-01c7c756e999
+2016-06-15T23:11:23.343824354 165.629501s info: Table 4b56d380-cf1d-4420-9853-01c7c756e999: Deleted the table.
+2016-06-15T23:12:05.977077781 208.262755s info: Table 180039fd-5e03-404a-bbcc-2a1aba30cdfa: Added replica on this server.
+2016-06-15T23:12:07.516807532 209.802485s info: Table 180039fd-5e03-404a-bbcc-2a1aba30cdfa: Starting a new Raft election for term 1.
+2016-06-15T23:12:07.640876425 209.926554s info: Table 180039fd-5e03-404a-bbcc-2a1aba30cdfa: This server is Raft leader for term 1. Latest log index is 0.
+2016-06-15T23:12:43.062441936 245.348120s info: Table 73e50183-b089-4010-98c2-78fbeb4b83b9: Added replica on this server.
+2016-06-15T23:12:44.759128982 247.044806s info: Table 73e50183-b089-4010-98c2-78fbeb4b83b9: Starting a new Raft election for term 1.
+2016-06-15T23:12:44.891032225 247.176710s info: Table 73e50183-b089-4010-98c2-78fbeb4b83b9: This server is Raft leader for term 1. Latest log index is 0.
+2016-06-15T23:13:19.621232503 281.906910s info: Table 73e50183-b089-4010-98c2-78fbeb4b83b9: Configuration is changing.
+2016-06-15T23:13:47.553141852 309.838820s notice: Server got SIGINT from pid 0, uid 0; shutting down...
+2016-06-15T23:13:47.553350416 309.839028s notice: Shutting down client connections...
+2016-06-15T23:13:47.553454546 309.839132s notice: All client connections closed.
+2016-06-15T23:13:47.553458792 309.839136s notice: Shutting down storage engine... (This may take a while if you had a lot of unflushed data in the writeback cache.)
+2016-06-15T23:13:47.561097667 309.846775s notice: Storage engine shut down.
+2016-06-15T23:13:49.194627125 0.361325s notice: Running rethinkdb 2.2.6 (GCC 5.2.1)...
+2016-06-15T23:13:49.201258866 0.367962s notice: Running on Linux 4.4.0-24-generic x86_64
+2016-06-15T23:13:49.201369580 0.368067s notice: Loading data from directory /home/dxm/Documents/nodeApps/chat.io/rethinkdb_data
+2016-06-15T23:13:49.301946490 0.468644s info: Automatically using cache size of 609 MB
+2016-06-15T23:13:49.303423642 0.470121s notice: Listening for intracluster connections on port 29015
+2016-06-15T23:13:49.371390971 0.538088s notice: Listening for client driver connections on port 28015
+2016-06-15T23:13:49.371640380 0.538338s notice: Listening for administrative HTTP connections on port 8080
+2016-06-15T23:13:49.371642147 0.538339s notice: Listening on addresses: 127.0.0.1, 127.0.1.1, ::1
+2016-06-15T23:13:49.371642852 0.538340s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2016-06-15T23:13:49.371643704 0.538341s notice: Server ready, "anycoloryoulike_zva" c64cdff7-13ab-4f0e-9d84-d14446a76dfa
+2016-06-15T23:13:49.774241770 0.940939s notice: A newer version of the RethinkDB server is available: 2.3.4. You can read the changelog at <https://github.com/rethinkdb/rethinkdb/releases>.
+2016-06-15T23:13:50.559867969 1.726565s info: Table 73e50183-b089-4010-98c2-78fbeb4b83b9: Starting a new Raft election for term 2.
+2016-06-15T23:13:50.612788019 1.779485s info: Table 73e50183-b089-4010-98c2-78fbeb4b83b9: This server is Raft leader for term 2. Latest log index is 3.
+2016-06-15T23:13:50.660685106 1.827382s info: Table 180039fd-5e03-404a-bbcc-2a1aba30cdfa: Starting a new Raft election for term 2.
+2016-06-15T23:13:50.762650839 1.929348s info: Table 180039fd-5e03-404a-bbcc-2a1aba30cdfa: This server is Raft leader for term 2. Latest log index is 2.
