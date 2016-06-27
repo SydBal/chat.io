@@ -54,21 +54,53 @@
         margin-bottom: 10px;
         margin-right: 10px;
       }
-
+      #myNav{
+        z-index: 999;
+      }
     </style>
   </head>
 
   <body>
     <div id="wrapper">
+            <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+          <ul class="sidebar-nav">
+            <li class="sidebar-brand">
+                <a href="#">
+                    -NAVIGATOR-
+                </a>
+            </li>
+            <li>
+              <a href="#">Dashboard</a>
+            </li>
+            <li>
+              <a href="#">Shortcuts</a>
+            </li>
+            <li>
+              <a href="#">Overview</a>
+            </li>
+            <li>
+              <a href="#">Events</a>
+            </li>
+            <li>
+              <a href="#">About</a>
+            </li>
+            <li>
+              <a href="#">Services</a>
+            </li>
+            <li>
+              <a href="#">Contact</a>
+            </li>
+          </ul>
+        </div>
     <!-- NavBar -->
-    <div class="navbar navbar-default navbar-fixed-top">
+    <div id="myNav" class="navbar navbar-default navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
-          <button id="menutoggle" style="right:0;margin-right:5px;z-index:1001;position:fixed;margin-top:7px;" type="button" class="btn btn-raised btn-success navbar-btn">
-            <<
-          </button>
+
           <a class="navbar-brand" href="javascript:void(0)">chat.io</a>
         </div>
+
         <!--<div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="javascript:void(0)">Active</a></li>
@@ -109,6 +141,9 @@
         </div>-->
       </div>
     </div>
+      <button id="menutoggle" style="right:0;margin-right:5px;z-index:1001;position:fixed;margin-top:7px;top:0;" type="button" class="btn btn-raised btn-success navbar-btn">
+    <<
+  </button>
 <style type="text/css">
 /*!
  * Start Bootstrap - Simple Sidebar (http://startbootstrap.com/)
@@ -122,10 +157,10 @@
     z-index: 1000;
     position: fixed;
     right: 0px;
-    width: 250px;
+    width: 225px;
     height: 110%;
-    margin-left: -250px;
-    margin-top: -75px;
+    margin-left: -225px;
+    margin-top: -15px;
     overflow-y: auto;
     background: #000;
     opacity: .7;
@@ -199,37 +234,6 @@
 
 </style>
     <!-- Main View -->
-      <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-          <ul class="sidebar-nav">
-            <li class="sidebar-brand">
-                <a href="#">
-                    -NAVIGATOR-
-                </a>
-            </li>
-            <li>
-              <a href="#">Dashboard</a>
-            </li>
-            <li>
-              <a href="#">Shortcuts</a>
-            </li>
-            <li>
-              <a href="#">Overview</a>
-            </li>
-            <li>
-              <a href="#">Events</a>
-            </li>
-            <li>
-              <a href="#">About</a>
-            </li>
-            <li>
-              <a href="#">Services</a>
-            </li>
-            <li>
-              <a href="#">Contact</a>
-            </li>
-          </ul>
-        </div>
     <div class="chat">
       <div class="chatArea">
         <ul class="messages"></ul>
