@@ -370,11 +370,13 @@
     $("#menutoggle").click(function() {
       var tCon = $('#sidebar-wrapper').css("width")
       if(tCon=="225px"){
-        $("#sidebar-wrapper").animate({width: 0},200,"linear");
-        $("#menutoggle").text("<<")
+        $("#sidebar-wrapper").animate({width: 0},200,"linear",function(){
+          $("#menutoggle").text("<<")
+        });
       }else{
-        $("#sidebar-wrapper").animate({width: 225},200,"linear");
-        $("#menutoggle").text(">>")
+        $("#sidebar-wrapper").animate({width: 225},200,"linear",function(){
+          $("#menutoggle").text(">>")
+        });
       }
     });
     </script>
