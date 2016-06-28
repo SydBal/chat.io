@@ -157,11 +157,11 @@
 
 /* Toggle Styles */
 #sidebar-wrapper {
-    display: none;
+    display: block;
     z-index: 1000;
     position: fixed;
     right: 0px;
-    width: 225px;
+    width: 0px;
     height: 110%;
     margin-left: -225px;
     margin-top: -15px;
@@ -288,7 +288,7 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <!-- Socket.io -->
@@ -298,6 +298,13 @@
     <script type="text/javascript" src="/scripts/js/ripples.min.js"></script>
     <!-- My JS -->
     <script>
+    //show modal right away
+    //set login modal to be unexitable
+    $('#myModal').modal({
+      backdrop: 'static',
+      keyboard: false
+    },'show');
+
     //Socket stuff
     var socket = io.connect(window.location.hostname);
 
@@ -330,9 +337,9 @@
                 'max-height':'100%'
          });
     });
-    //on page load
+    //on page finished load
     $(window).load(function(){
-      $('#myModal').modal('show');
+
     })
     //on ready
     $(document).ready(function(){
@@ -348,12 +355,6 @@
       document.getElementById('successtext').style.color = 'yellow'
     });;
 
-    //set login modal to be unexitable
-    $('#myModal').modal({
-      backdrop: 'static',
-      keyboard: false
-    });
-
     //set enter to be the submit key for login modal
     $("input").keypress(function(event) {
       if($('#myModal').is(":visible")){
@@ -367,10 +368,14 @@
 
     //sidebar toggle
     $("#menutoggle").click(function() {
-
-      $("#sidebar-wrapper").toggle();
-      console.log($("#menutoggle").text())
-
+      var tCon = $('#sidebar-wrapper').css("width")
+      if(tCon=="225px"){
+        $("#sidebar-wrapper").animate({width: 0},200,"linear");
+        $("#menutoggle").text("<<")
+      }else{
+        $("#sidebar-wrapper").animate({width: 225},200,"linear");
+        $("#menutoggle").text(">>")
+      }
     });
     </script>
   </body>
