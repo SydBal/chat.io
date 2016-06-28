@@ -19,14 +19,13 @@ io.use(function(socket, next) {
   next();
 });
 
+app.use('/scripts', express.static(path.join(__dirname + '/node_modules/bootstrap-material-design/dist/')));
+app.use('/public', express.static(path.join(__dirname + '/public/')));
+
 // Serve index
 app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname + '/index.html'));
 });
-
-app.use('/scripts', express.static(path.join(__dirname + '/node_modules/bootstrap-material-design/dist/')));
-app.use('/public', express.static(path.join(__dirname + '/public/')));
-
 
 //for heroku
 var port = process.env.PORT || 3000;
@@ -70,10 +69,10 @@ io.on('connection', function(socket){
   //sends to new user
   socket.emit('chat message', "You can now chat with other logged in users.")
 
+  //send new message to everyone
   socket.on('chat message', function(msg){
     io.emit('chat message', msg);
     chatlog.push(msg)
-    console.log(chatlog)
   });
 
   // handle disconnecting users
