@@ -25,6 +25,8 @@ app.get('/', function(req, res) {
 });
 
 app.use('/scripts', express.static(path.join(__dirname + '/node_modules/bootstrap-material-design/dist/')));
+app.use('/public', express.static(path.join(__dirname + '/public/')));
+
 
 //for heroku
 var port = process.env.PORT || 3000;

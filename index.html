@@ -1,5 +1,5 @@
 <!--  Dominic Balassone
-      First attempt at a socket.io chatroom
+  First attempt at a socket.io chatroom
   -->
 <html lang="en">
   <head>
@@ -7,20 +7,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <link rel="shortcut icon" href="/public/img/bubble.png"/>
     <meta name="description" content="Be social">
     <meta name="author" content="Dominic Balassone">
     <title>chat.io</title>
     <!-- Material Design fonts -->
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700">
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/icon?family=Material+Icons">
-
     <!-- Bootstrap -->
     <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-
     <!-- Bootstrap Material Design -->
     <link rel="stylesheet" type="text/css" href="/scripts/css/bootstrap-material-design.css">
     <link rel="stylesheet" type="text/css" href="/scripts/css/ripples.min.css">
-
     <!-- Custom CSS -->
     <style type="text/css">
       body {
@@ -29,27 +27,23 @@
       @media (max-width: 979px) {
         body {
           padding-top: 0px;
-        }
       }
-
+      }
       #wrapper{
         width: 100%;
         height:100%;
       }
-
       #successtext {
         float: left;
         padding-left: 18px;
         margin-bottom: 7px;
       }
-              
       #inputMessage{
         position: fixed;
         bottom: 0;
         width: 100%;
         padding-bottom: 18px;
       }
-
       #loginbut{
         margin-bottom: 10px;
         margin-right: 10px;
@@ -61,232 +55,201 @@
         padding-top: 10px;
         padding-bottom: 10px;
       }
+      #sidebar-wrapper {
+        overflow-x: hidden;
+        display: block;
+        z-index: 1000;
+        position: fixed;
+        right: 0px;
+        width: 0px;
+        height: 110%;
+        margin-left: -225px;
+        margin-top: -15px;
+        overflow-y: auto;
+        background: #000;
+        opacity: .7;
+        -webkit-transition: all 0.5s ease;
+        -moz-transition: all 0.5s ease;
+        -o-transition: all 0.5s ease;
+        transition: all 0.5s ease;
+      }
+      #wrapper.toggled #sidebar-wrapper {
+        width: 250px;
+      }
+      #page-content-wrapper {
+        width: 100%;
+        position: absolute;
+        padding: 15px;
+      }
+      #wrapper.toggled #page-content-wrapper {
+        position: absolute;
+        margin-right: 0px;
+      }
+      /* Sidebar Styles */
+      .sidebar-nav {
+        position: absolute;
+        top: 0;
+        width: 250px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .sidebar-nav li {
+        text-indent: 20px;
+        line-height: 40px;
+      }
+      .sidebar-nav li a {
+        display: block;
+        text-decoration: none;
+        color: #999999;
+      }
+      .sidebar-nav li a:hover {
+        text-decoration: none;
+        color: #fff;
+        background: rgba(255,255,255,0.2);
+      }
+      .sidebar-nav li a:active,
+      .sidebar-nav li a:focus {
+        text-decoration: none;
+      }
+      .sidebar-nav > .sidebar-brand {
+        height: 65px;
+        font-size: 18px;
+        line-height: 60px;
+      }
+      .sidebar-nav > .sidebar-brand a {
+        color: #999999;
+      }
+      .sidebar-nav > .sidebar-brand a:hover {
+        color: #fff;
+        background: none;
+      }
     </style>
   </head>
-
   <body>
     <div id="wrapper">
-            <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-          <ul class="sidebar-nav">
-            <li class="sidebar-brand">
-                <a href="#">
-                    -NAVIGATOR-
-                </a>
-            </li>
-            <li>
-              <a href="#">Dashboard</a>
-            </li>
-            <li>
-              <a href="#">Shortcuts</a>
-            </li>
-            <li>
-              <a href="#">Overview</a>
-            </li>
-            <li>
-              <a href="#">Events</a>
-            </li>
-            <li>
-              <a href="#">About</a>
-            </li>
-            <li>
-              <a href="#">Services</a>
-            </li>
-            <li>
-              <a href="#">Contact</a>
-            </li>
-          </ul>
-        </div>
-    <!-- NavBar -->
-    <div id="myNav" class="navbar navbar-default navbar-fixed-top" style="max-height:50px;">
-      <div class="container-fluid">
-        <div class="navbar-header">
-
-          <a class="navbar-brand" href="javascript:void(0)">chat.io</a>
-        </div>
-
-        <!--<div class="navbar-collapse collapse navbar-responsive-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="javascript:void(0)">Active</a></li>
-            <li><a href="javascript:void(0)">Link</a></li>
-            <li class="dropdown">
-              <a href="http://fezvrasta.github.io/bootstrap-material-design/bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown
-                <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="javascript:void(0)">Action</a></li>
-                <li><a href="javascript:void(0)">Another action</a></li>
-                <li><a href="javascript:void(0)">Something else here</a></li>
-                <li class="divider"></li>
-                <li class="dropdown-header">Dropdown header</li>
-                <li><a href="javascript:void(0)">Separated link</a></li>
-                <li><a href="javascript:void(0)">One more separated link</a></li>
-              </ul>
-            </li>
-          </ul>
-          <form class="navbar-form navbar-left">
-            <div class="form-group">
-              <input type="text" class="form-control col-sm-8" placeholder="Search">
-            </div>
-          </form>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="javascript:void(0)">Link</a></li>
-            <li class="dropdown">
-              <a href="http://fezvrasta.github.io/bootstrap-material-design/bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown
-                <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="javascript:void(0)">Action</a></li>
-                <li><a href="javascript:void(0)">Another action</a></li>
-                <li><a href="javascript:void(0)">Something else here</a></li>
-                <li class="divider"></li>
-                <li><a href="javascript:void(0)">Separated link</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>-->
+      <!-- Sidebar -->
+      <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+          <li class="sidebar-brand">
+            <a href="#">
+            -NAVIGATOR-
+            </a>
+          </li>
+          <li>
+            <a href="#">Dashboard</a>
+          </li>
+          <li>
+            <a href="#">Shortcuts</a>
+          </li>
+          <li>
+            <a href="#">Overview</a>
+          </li>
+          <li>
+            <a href="#">Events</a>
+          </li>
+          <li>
+            <a href="#">About</a>
+          </li>
+          <li>
+            <a href="#">Services</a>
+          </li>
+          <li>
+            <a href="#">Contact</a>
+          </li>
+        </ul>
       </div>
-    </div>
-      <button id="menutoggle" style="right:0;margin-right:5px;z-index:1001;position:fixed;margin-top:6px;top:0;" type="button" class="btn btn-raised btn-success navbar-btn">
-    <<
-  </button>
-<style type="text/css">
-/*!
- * Start Bootstrap - Simple Sidebar (http://startbootstrap.com/)
- * Copyright 2013-2016 Start Bootstrap
- * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
- */
-
-/* Toggle Styles */
-#sidebar-wrapper {
-    overflow-x: hidden;
-    display: block;
-    z-index: 1000;
-    position: fixed;
-    right: 0px;
-    width: 0px;
-    height: 110%;
-    margin-left: -225px;
-    margin-top: -15px;
-    overflow-y: auto;
-    background: #000;
-    opacity: .7;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
-}
-
-#wrapper.toggled #sidebar-wrapper {
-    width: 250px;
-}
-
-#page-content-wrapper {
-    width: 100%;
-    position: absolute;
-    padding: 15px;
-}
-
-#wrapper.toggled #page-content-wrapper {
-    position: absolute;
-    margin-right: 0px;
-}
-
-/* Sidebar Styles */
-.sidebar-nav {
-    position: absolute;
-    top: 0;
-    width: 250px;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-.sidebar-nav li {
-    text-indent: 20px;
-    line-height: 40px;
-}
-
-.sidebar-nav li a {
-    display: block;
-    text-decoration: none;
-    color: #999999;
-}
-
-.sidebar-nav li a:hover {
-    text-decoration: none;
-    color: #fff;
-    background: rgba(255,255,255,0.2);
-}
-
-.sidebar-nav li a:active,
-.sidebar-nav li a:focus {
-    text-decoration: none;
-}
-
-.sidebar-nav > .sidebar-brand {
-    height: 65px;
-    font-size: 18px;
-    line-height: 60px;
-}
-
-.sidebar-nav > .sidebar-brand a {
-    color: #999999;
-}
-
-.sidebar-nav > .sidebar-brand a:hover {
-    color: #fff;
-    background: none;
-}
-
-</style>
-    <!-- Main View -->
-    <div class="chat">
-      <div class="chatArea">
-        <ul class="messages"></ul>
-      </div>
-      <div id="inputMessage" class="form-group label-floating">
-        <label for="555" class="control-label">Give your input...</label>
-        <input type="text" class="form-control" id="555">
-
-        <p class="help-block">Have fun chatting!</p>
-      </div>
-    </div>
-
-    <!-- Trigger the modal with a button
-    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
-    --->
-    <!-- Modal -->
-    <div id="myModal" class="modal fade" role="dialog">
-      <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <h2 class="modal-title">Welcome to chat.io!</h2>
+      <!-- NavBar -->
+      <div id="myNav" class="navbar navbar-default navbar-fixed-top" style="max-height:50px;">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="javascript:void(0)">chat.io</a>
           </div>
-          <div class="modal-body">
-            <h4>Create a username and password OR login with your already existing credentials.</h4>
-            <form>
+          <!--<div class="navbar-collapse collapse navbar-responsive-collapse">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="javascript:void(0)">Active</a></li>
+              <li><a href="javascript:void(0)">Link</a></li>
+              <li class="dropdown">
+                <a href="http://fezvrasta.github.io/bootstrap-material-design/bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown
+                  <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="javascript:void(0)">Action</a></li>
+                  <li><a href="javascript:void(0)">Another action</a></li>
+                  <li><a href="javascript:void(0)">Something else here</a></li>
+                  <li class="divider"></li>
+                  <li class="dropdown-header">Dropdown header</li>
+                  <li><a href="javascript:void(0)">Separated link</a></li>
+                  <li><a href="javascript:void(0)">One more separated link</a></li>
+                </ul>
+              </li>
+            </ul>
+            <form class="navbar-form navbar-left">
+              <div class="form-group">
+                <input type="text" class="form-control col-sm-8" placeholder="Search">
+              </div>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="javascript:void(0)">Link</a></li>
+              <li class="dropdown">
+                <a href="http://fezvrasta.github.io/bootstrap-material-design/bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown
+                  <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="javascript:void(0)">Action</a></li>
+                  <li><a href="javascript:void(0)">Another action</a></li>
+                  <li><a href="javascript:void(0)">Something else here</a></li>
+                  <li class="divider"></li>
+                  <li><a href="javascript:void(0)">Separated link</a></li>
+                </ul>
+              </li>
+            </ul>
+            </div>-->
+        </div>
+      </div>
+      <button id="menutoggle" style="right:0;margin-right:5px;z-index:1001;position:fixed;margin-top:6px;top:0;" type="button" class="btn btn-raised btn-success navbar-btn">
+      <<
+      </button>
+      <!-- Main View -->
+      <div class="chat">
+        <div class="chatArea">
+          <ul class="messages"></ul>
+        </div>
+        <div id="inputMessage" class="form-group label-floating">
+          <label for="555" class="control-label">Give your input...</label>
+          <input type="text" class="form-control" id="555">
+          <p class="help-block">Have fun chatting!</p>
+        </div>
+      </div>
+      <!-- Trigger the modal with a button
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+        --->
+      <!-- Modal -->
+      <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2 class="modal-title">Welcome to chat.io!</h2>
+            </div>
+            <div class="modal-body">
+              <h4>Create a username and password OR login with your already existing credentials.</h4>
+              <form>
               <fieldset class="form-group">
                 <input type="email" class="form-control" id="InputEmail" placeholder="Username">
               </fieldset>
               <fieldset class="form-group">
                 <input type="password" class="form-control" id="InputPassword" placeholder="Password">
               </fieldset>
-          </div>
-          <div class="modal-footer">
-            <div id='successtext'></div>
-            <button type="button" class="btn btn-primary" id='loginbut' type="submit">Login</button>
+            </div>
+            <div class="modal-footer">
+              <div id='successtext'></div>
+              <button type="button" class="btn btn-primary" id='loginbut' type="submit">Login</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-
-
-
-
-
     <!-- Bootstrap core JavaScript
-    ================================================== -->
+      ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
@@ -299,87 +262,87 @@
     <script type="text/javascript" src="/scripts/js/ripples.min.js"></script>
     <!-- My JS -->
     <script>
-    //show modal right away
-    //set login modal to be unexitable
-    $('#myModal').modal({
-      backdrop: 'static',
-      keyboard: false
-    },'show');
-
-    //Socket stuff
-    var socket = io.connect(window.location.hostname);
-
-    socket.on('login', function(success){
-      if(success[0]){
-        document.getElementById('successtext').innerHTML = '<h4><strong>Login Successful!<strong></h4>'
-        document.getElementById('successtext').style.color = 'lightgreen'
-        setTimeout(function(){
-          $('#myModal').modal('hide');
-          $('.chat').fadeIn(2000);
-          $('.topinfo').css({'display':'inline-block',
-                             'opacity': 1});
-        },1500)
-      }else{
-        if(success[1] == 'wrongpass'){
-          document.getElementById('successtext').innerHTML = '<h4><strong>Login Unauthorized!</strong></h4>'
-          document.getElementById('successtext').style.color = 'red'
-        }else if(success[1] == 'tooshort'){
-          document.getElementById('successtext').innerHTML = '<h4><strong>Username and Password must contain at least 2 characters!</strong></h4>'
-          document.getElementById('successtext').style.color = 'red'
+      //show modal right away
+      //set login modal to be unexitable
+      $('#myModal').modal({
+        backdrop: 'static',
+        keyboard: false
+      },'show');
+      
+      //Socket stuff
+      var socket = io.connect(window.location.hostname);
+      
+      socket.on('login', function(success){
+        if(success[0]){
+          document.getElementById('successtext').innerHTML = '<h4><strong>Login Successful!<strong></h4>'
+          document.getElementById('successtext').style.color = 'lightgreen'
+          setTimeout(function(){
+            $('#myModal').modal('hide');
+            $('.chat').fadeIn(2000);
+            $('.topinfo').css({'display':'inline-block',
+                               'opacity': 1});
+          },1500)
+        }else{
+          if(success[1] == 'wrongpass'){
+            document.getElementById('successtext').innerHTML = '<h4><strong>Login Unauthorized!</strong></h4>'
+            document.getElementById('successtext').style.color = 'red'
+          }else if(success[1] == 'tooshort'){
+            document.getElementById('successtext').innerHTML = '<h4><strong>Username and Password must contain at least 2 characters!</strong></h4>'
+            document.getElementById('successtext').style.color = 'red'
+          }
         }
-      }
-    });
-  
-    // custom modal show behavior
-    $('#myModal').on('show.bs.modal', function () {
-         $(this).find('.modal-body').css({
-                width:'auto', //probably not needed
-                height:'auto', //probably not needed 
-                'max-height':'100%'
-         });
-    });
-    //on page finished load
-    $(window).load(function(){
-
-    })
-    //on ready
-    $(document).ready(function(){
-      $.material.init()
-      $('.dropdown-toggle').dropdown();
-
-    });
-
-    //try to login via socket when clicking on login button
-    $('#loginbut').on('click', function(event) {
-      socket.emit('login', [$('#InputEmail').val(), $('#InputPassword').val()])
-      document.getElementById('successtext').innerHTML = '<h4><strong>Contacting Server...</strong></h4>'
-      document.getElementById('successtext').style.color = 'yellow'
-    });;
-
-    //set enter to be the submit key for login modal
-    $("input").keypress(function(event) {
-      if($('#myModal').is(":visible")){
-        if (event.which == 13) {
-          socket.emit('login', [$('#InputEmail').val(), $('#InputPassword').val()])
-          document.getElementById('successtext').innerHTML = '<h4><strong>Contacting Server...</strong></h4>'
-          document.getElementById('successtext').style.color = 'yellow'
+      });
+      
+      // custom modal show behavior
+      $('#myModal').on('show.bs.modal', function () {
+           $(this).find('.modal-body').css({
+                  width:'auto', //probably not needed
+                  height:'auto', //probably not needed 
+                  'max-height':'100%'
+           });
+      });
+      //on page finished load
+      $(window).load(function(){
+      
+      })
+      //on ready
+      $(document).ready(function(){
+        $.material.init()
+        $('.dropdown-toggle').dropdown();
+      
+      });
+      
+      //try to login via socket when clicking on login button
+      $('#loginbut').on('click', function(event) {
+        socket.emit('login', [$('#InputEmail').val(), $('#InputPassword').val()])
+        document.getElementById('successtext').innerHTML = '<h4><strong>Contacting Server...</strong></h4>'
+        document.getElementById('successtext').style.color = 'yellow'
+      });;
+      
+      //set enter to be the submit key for login modal
+      $("input").keypress(function(event) {
+        if($('#myModal').is(":visible")){
+          if (event.which == 13) {
+            socket.emit('login', [$('#InputEmail').val(), $('#InputPassword').val()])
+            document.getElementById('successtext').innerHTML = '<h4><strong>Contacting Server...</strong></h4>'
+            document.getElementById('successtext').style.color = 'yellow'
+          }
         }
-      }
-    });
-
-    //sidebar toggle
-    $("#menutoggle").click(function() {
-      var tCon = $('#sidebar-wrapper').css("width")
-      if(tCon=="225px"){
-        $("#sidebar-wrapper").animate({width: 0},200,"linear",function(){
-          $("#menutoggle").text("<<")
-        });
-      }else{
-        $("#sidebar-wrapper").animate({width: 225},200,"linear",function(){
-          $("#menutoggle").text(">>")
-        });
-      }
-    });
+      });
+      
+      //sidebar toggle
+      $("#menutoggle").click(function() {
+        var tCon = $('#sidebar-wrapper').css("width")
+        if(tCon=="225px"){
+          $("#sidebar-wrapper").animate({width: 0},200,"linear",function(){
+            $("#menutoggle").text("<<")
+          });
+        }else{
+          $("#sidebar-wrapper").animate({width: 225},200,"linear",function(){
+            $("#menutoggle").text(">>")
+          });
+        }
+      });
     </script>
   </body>
 </html>
