@@ -13,7 +13,7 @@
     <title>chat.io</title>
     <!-- Material Design fonts -->
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700">
-    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Bootstrap -->
     <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <!-- Bootstrap Material Design -->
@@ -191,11 +191,15 @@
         <div class="chatArea" style="position:fixed;margin-bottom:77px;bottom:0px;overflow-y:scroll;width:100%;margin-top:50px;top:0px;background-color: white;border-bottom: medium solid #009688;">
           <ul id="messages"></ul>
         </div>
-        <div style="padding-left:2px;" id="inputMessage" class="form-group label-floating">
+        <div style="padding-left:2px;padding-right:60px;right:0;" id="inputMessage" class="form-group label-floating">
           <label for="555" class="control-label">Give your input...</label>
           <input type="text" autocomplete="off" class="form form-control" id="555"></input>
           <p class="help-block">Have fun chatting!</p>
         </div>
+        <a href="javascript:void(0)" class="btn btn-success btn-fab" id="sendbutton" style="position: absolute; bottom: 0;right:0;margin-bottom: 12px; margin-right:5px;z-index:1000;"><i class="material-icons" style="margin-top:2px;margin-left:1px;">message</i></a>
+
+
+
       </div>
     </div>
     <!-- Bootstrap core JavaScript
@@ -289,6 +293,13 @@
           return false;
         }
       });
+
+      //button send
+      $("#sendbutton").click(function(){
+          socket.emit('chat message', $('#555').val());
+          $('#555').val('');
+          return false;
+      })
 
       //show newest
       socket.on('chat message', function(msg){
