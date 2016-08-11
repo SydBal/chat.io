@@ -16,119 +16,13 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Bootstrap -->
     <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <!-- Bootstrap Material Design -->
-    <link rel="stylesheet" type="text/css" href="/scripts/css/bootstrap-material-design.css">
+    <!-- Bootstrap Material Design (customized)-->
+    <!-- <link rel="stylesheet" type="text/css" href="/scripts/css/bootstrap-material-design.css"> -->
+    <link rel="stylesheet" type="text/css" href="/public/css/material-custom.css">
     <link rel="stylesheet" type="text/css" href="/scripts/css/ripples.min.css">
     <!-- Custom CSS -->
-    <style type="text/css">
-      body {
-        padding-top: 0px;
-      }
-      @media (max-width: 979px) {
-        body {
-          padding-top: 0px;
-      }
-      }
-      #wrapper{
-        width: 100%;
-        height:100%;
-      }
-      #successtext {
-        float: left;
-        padding-left: 18px;
-        margin-bottom: 7px;
-      }
-      #inputMessage{
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        padding-bottom: 18px;
-        margin-top:15px;
-      }
-      #loginbut{
-        margin-bottom: 10px;
-        margin-right: 10px;
-      }
-      #myNav{
-        z-index: 999;
-      }
-      .navbar-brand{
-        padding-top: 10px;
-        padding-bottom: 10px;
-      }
-      #sidebar-wrapper {
-        overflow-x: hidden;
-        display: block;
-        z-index: 1000;
-        position: fixed;
-        right: 0px;
-        width: 0px;
-        height: 110%;
-        margin-left: -225px;
-        margin-top: -15px;
-        overflow-y: auto;
-        background: #000;
-        opacity: .7;
-        -webkit-transition: all 0.5s ease;
-        -moz-transition: all 0.5s ease;
-        -o-transition: all 0.5s ease;
-        transition: all 0.5s ease;
-      }
-      #wrapper.toggled #sidebar-wrapper {
-        width: 250px;
-      }
-      #page-content-wrapper {
-        width: 100%;
-        position: absolute;
-        padding: 15px;
-      }
-      #wrapper.toggled #page-content-wrapper {
-        position: absolute;
-        margin-right: 0px;
-      }
-      /* Sidebar Styles */
-      .sidebar-nav {
-        position: absolute;
-        top: 0;
-        width: 250px;
-        margin: 0;
-        padding: 0;
-        list-style: none;
-      }
-      .sidebar-nav li {
-        text-indent: 20px;
-        line-height: 40px;
-      }
-      .sidebar-nav li a {
-        display: block;
-        text-decoration: none;
-        color: #999999;
-      }
-      .sidebar-nav li a:hover {
-        text-decoration: none;
-        color: #fff;
-        background: rgba(255,255,255,0.2);
-      }
-      .sidebar-nav li a:active,
-      .sidebar-nav li a:focus {
-        text-decoration: none;
-      }
-      .sidebar-nav > .sidebar-brand {
-        height: 65px;
-        font-size: 18px;
-        line-height: 60px;
-      }
-      .sidebar-nav > .sidebar-brand a {
-        color: #999999;
-      }
-      .sidebar-nav > .sidebar-brand a:hover {
-        color: #fff;
-        background: none;
-      }
-      #messages {
-        list-style-position: inside;
-      }
-    </style>
+    <link rel="stylesheet" type="text/css" href="/public//css/custom.css">
+
   </head>
   <body>
     <div id="wrapper">
@@ -188,13 +82,13 @@
       </button>
       <!-- Main View -->
       <div class="chat">
-        <div class="chatArea" style="position:fixed;margin-bottom:77px;bottom:0px;overflow-y:scroll;width:100%;margin-top:50px;top:0px;background-color: white;border-bottom: medium solid #009688;">
+        <div class="chatArea" style="position:fixed;margin-bottom:77px;bottom:0px;overflow-y:scroll;width:100%;margin-top:50px;top:0px;background-color:white;border-bottom: medium solid #009688;">
           <ul id="messages"></ul>
         </div>
-        <div style="padding-left:2px;padding-right:60px;right:0;" id="inputMessage" class="form-group label-floating">
-          <label for="555" class="control-label">Give your input...</label>
-          <input type="text" autocomplete="off" class="form form-control" id="555"></input>
-          <p class="help-block">Have fun chatting!</p>
+        <div id="inputMessage" style="padding-left:3px;padding-right:62px;right:0;margin-top:0px;padding-top:15px;background-color:#009688;" class="form-group label-floating">
+          <label for="chatfield" class="control-label" style="margin-top:32px;">Give your input...</label>
+          <input  id="chatfield" type="text" autocomplete="off" class="form form-control" style="color:white;"></input>
+          <p class="help-block" style="color:white;">Have fun chatting!</p>
         </div>
         <a href="javascript:void(0)" class="btn btn-success btn-fab" id="sendbutton" style="position: fixed; bottom: 0;right:0;margin-bottom: 12px; margin-right:5px;"><i class="material-icons" style="margin-top:2px;margin-left:1px;">message</i></a>
 
@@ -228,8 +122,8 @@
       
       socket.on('login', function(success){
         if(success[0]){
-          document.getElementById('successtext').innerHTML = '<h4><strong>Login Successful!<strong></h4>'
-          document.getElementById('successtext').style.color = 'lightgreen'
+          document.getElementById('successtext').innerHTML = '<h4>Login Successful!</h4>'
+          document.getElementById('successtext').style.color = "#59B75C"
           setTimeout(function(){
             $('#myModal').modal('hide');
             $('.chat').fadeIn(2000);
@@ -238,10 +132,10 @@
           },1500)
         }else{
           if(success[1] == 'wrongpass'){
-            document.getElementById('successtext').innerHTML = '<h4><strong>Login Unauthorized!</strong></h4>'
+            document.getElementById('successtext').innerHTML = '<h4>Login Unauthorized!</h4>'
             document.getElementById('successtext').style.color = 'red'
           }else if(success[1] == 'tooshort'){
-            document.getElementById('successtext').innerHTML = '<h4><strong>Username and Password must contain at least 2 characters!</strong></h4>'
+            document.getElementById('successtext').innerHTML = '<h4>Username and Password must contain at least 2 characters!</h4>'
             document.getElementById('successtext').style.color = 'red'
           }
         }
@@ -269,7 +163,7 @@
       //try to login via socket when clicking on login button
       $('#loginbut').on('click', function(event) {
         socket.emit('login', [$('#InputEmail').val(), $('#InputPassword').val()])
-        document.getElementById('successtext').innerHTML = '<h4><strong>Contacting Server...</strong></h4>'
+        document.getElementById('successtext').innerHTML = '<h4>Contacting Server...</h4>'
         document.getElementById('successtext').style.color = 'yellow'
       });;
       
@@ -278,7 +172,7 @@
         if($('#myModal').is(":visible")){
           if (event.which == 13) {
             socket.emit('login', [$('#InputEmail').val(), $('#InputPassword').val()])
-            document.getElementById('successtext').innerHTML = '<h4><strong>Contacting Server...</strong></h4>'
+            document.getElementById('successtext').innerHTML = '<h4>Contacting Server...</h4>'
             document.getElementById('successtext').style.color = 'yellow'
           }
         }
@@ -286,18 +180,18 @@
 
       //MESSAGES
       //send
-      $("#555").keypress(function(event) {
+      $("#chatfield").keypress(function(event) {
         if (event.which == 13) {
-          socket.emit('chat message', $('#555').val());
-          $('#555').val('');
+          socket.emit('chat message', $('#chatfield').val());
+          $('#chatfield').val('');
           return false;
         }
       });
 
       //button send
       $("#sendbutton").click(function(){
-          socket.emit('chat message', $('#555').val());
-          $('#555').val('');
+          socket.emit('chat message', $('#chatfield').val());
+          $('#chatfield').val('');
           return false;
       })
 
