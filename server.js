@@ -23,6 +23,11 @@ app.use('/scripts', express.static(path.join(__dirname + '/node_modules/bootstra
 app.use('/public', express.static(path.join(__dirname + '/public/')));
 
 // Serve index
+app.get('/', function(req, res) {
+  res.sendFile(path.join(__dirname + '/index.html'));
+});
+
+// Serve chat.io
 app.get('/chat', function(req, res) {
   res.sendFile(path.join(__dirname + '/chat.html'));
 });
