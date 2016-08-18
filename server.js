@@ -27,6 +27,12 @@ app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname + '/index.html'));
 });
 
+// Serve resume
+app.get('/resume', function(req, res) {
+  res.sendFile(path.join(__dirname + '/DominicBalassoneResume.pdf'));
+});
+
+
 // Serve chat.io
 app.get('/chat', function(req, res) {
   res.sendFile(path.join(__dirname + '/chat.html'));
