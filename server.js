@@ -32,6 +32,11 @@ app.get('/resume', function(req, res) {
   res.sendFile(path.join(__dirname + '/DominicBalassoneResume.pdf'));
 });
 
+// Serve Pure Storage Poster
+app.get('/pureposter', function(req, res) {
+  res.sendFile(path.join(__dirname + '/pureposter.pdf'));
+});
+
 
 // Serve chat.io
 app.get('/chat', function(req, res) {
