@@ -1,5 +1,6 @@
 <!--  Dominic Balassone
-  First attempt at a socket.io chatroom
+      Personal Website
+      Hi Google!
   -->
 <html lang="en">
   <head>
@@ -33,7 +34,7 @@
             <ul style="list-style:none;padding:0;list-style:none;padding:0;">
               <li style="white-space: nowrap;display:inline;padding: .2em 1em;">Software Developer</li>
               <li style="white-space: nowrap;display:inline;padding: .2em 1em;">Data Scientist</li>
-              <li style="white-space: nowrap;display:inline;padding: .2em 1em;">Graphic Designer</li>
+              <li style="white-space: nowrap;display:inline;padding: .2em 1em;">UI/UX Designer</li>
             </ul>
           </h3>
           <strong>
@@ -86,10 +87,17 @@
       </div>
     </div>
     <div class="jumbotron" style="background-color:rgba(255,240,250,0.90);padding-bottom:10px;padding-top:1px;">
-      <div class="container">
+      <div class="container" style="font-size:16;">
         <h2>Projects</h2>
-        <h3><a href="https://mcfli.itch.io/the-touchdown-adventures-of-the-philae-lander">The Touchdown Adventures of the Philae Lander</a></h3><br>
-        <img src="/public/img/tafl.png">
+        <center><h3 style="margin-bottom:0px;"><a href="https://mcfli.itch.io/the-touchdown-adventures-of-the-philae-lander">The Touchdown Adventures of the Philae Lander</a></h3>
+        Winter 2014<br>
+        <img src="/public/img/tafl.png" style="max-width:100%;margin:10px 0px;"></center>
+        This javascript game was built on the Phaser for UCSC course, CMPM 20, Introduction to Game Design. I came up with the overall design concept (a gravity based physics game with maze-like obsticles, which takes place around several of our solar system's planetary bodies), aided in the creation of the physics engine, created a user friend HUD (including calculated speed of player and indicator for unsafe landing speed), collision detection for level endings which was dependant of the player's current speed, the lander sprite and thrust animation, as well as the level design for the planet Earth level.
+
+        <center><h3 style="margin-bottom:0px;"><a href="https://mcfli.itch.io/the-touchdown-adventures-of-the-philae-lander">The Touchdown Adventures of the Philae Lander</a></h3>
+        Winter 2014<br>
+        <img src="/public/img/tafl.png" style="max-width:100%;margin:10px 0px;"></center>
+        This javascript game was built on the Phaser for UCSC course, CMPM 20, Introduction to Game Design. I came up with the overall design concept (a gravity based physics game with maze-like obsticles, which takes place around several of our solar system's planetary bodies), aided in the creation of the physics engine, created a user friend HUD (including calculated speed of player and indicator for unsafe landing speed), collision detection for level endings which was dependant of the player's current speed, the lander sprite and thrust animation, as well as the level design for the planet Earth level.
       </div>
     </div>
     <!-- Bootstrap core JavaScript
@@ -106,6 +114,29 @@
     <script type="text/javascript" src="/scripts/js/ripples.min.js"></script>
     <!-- My JS -->
     <script>
+      //image preloader for user interaction smoothness
+      function preloader() {
+        if (document.images) {
+          var img1 = new Image();
+          var img2 = new Image();
+          img1.src = "public/img/blacktile.jpg";
+          img2.src = "public/img/laugher.png";
+        }
+      }
+      function addLoadEvent(func) {
+        var oldonload = window.onload;
+        if (typeof window.onload != 'function') {
+          window.onload = func;
+        } else {
+          window.onload = function() {
+            if (oldonload) {
+              oldonload();
+            }
+            func();
+          }
+        }
+      }
+      addLoadEvent(preloader);
       //Avatar mouseover effect
       $('#avatar').hover(function(){
         $('body').css('background-image', 'url(public/img/hextile.png)')
