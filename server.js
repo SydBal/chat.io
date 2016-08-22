@@ -29,7 +29,7 @@ app.get('/', function(req, res) {
 
 // Serve resume
 app.get('/resume', function(req, res) {
-  res.sendFile(path.join(__dirname + '/DominicBalassoneResume.pdf'));
+  res.sendFile(path.join(__dirname + '/public/img/DBalassoneResume.pdf'));
 });
 
 // Serve Pure Storage Poster

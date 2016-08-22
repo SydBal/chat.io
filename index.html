@@ -23,6 +23,9 @@
     <link rel="stylesheet" type="text/css" href="/scripts/css/ripples.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="/public/css/custom.css">
+    <style type="text/css">
+      .projects{box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);background-color:white;padding:10px 10px;border-radius:2px;margin:20px 0px;}
+    </style>
   </head>
   <body style="background-image:url(/public/img/blacktile.jpg);"">
     <center>
@@ -61,7 +64,7 @@
             </h3>
             <h4 style="margin-top:2px;">
               Computer Science BA<br>
-              Cognitive Science BS
+              Cognitive Science BS - AI Emphasis
             </h4>
             <ul style="text-align:left;padding:0;list-style:circle;padding:0;">
                 <li style="padding: .2em .1em;">Code contributor to Smart Energy Analysis and Disaggregation Systems (SEADS), a NSF funded project for a non-intrusive load monitoring (NILM) SaaS</li>
@@ -89,19 +92,34 @@
     <div class="jumbotron" style="background-color:rgba(255,240,250,0.90);padding-bottom:10px;padding-top:1px;">
       <div class="container" style="font-size:16;">
         <h2>Projects</h2>
-        <center><h3 style="margin-bottom:0px;"><a href="public/img/pureposter.pdf">Pure Storage Real Time Heatmap WebApp</a></h3>
+        <div class="projects">
+        <center><h3 style="margin-bottom:0px;"><a href="public/img/pureposter.pdf">Pure Storage Real-Time Heatmap WebApp</a></h3>
         Spring 2016<br>
-        <img src="/public/img/tafl.png" style="max-width:100%;margin:10px 0px;"></center>
+        (not currently hosted, title links to project poster)<br>
+        <img src="/public/img/psexample.png" style="border-radius:2px;box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);max-width:100%;margin:10px 0px;"></center>
 
         https://www.youtube.com/watch?v=dUGT0Y8VBmo
-
+        </div>
+        <div class="projects">
+        <center><h3 style="margin-bottom:0px;"><a href="chat">Socket.io Real-Time Chat (chat.io)</a></h3>
+        Summer 2016<br>
+        <img src="/public/img/chatimg.png" style="border-radius:2px;box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);max-width:100%;margin:10px 0px;"></center>
+        Ongoing personal project aimed at creating a real-time chat client. Mobile reactivity built in. Future implementation aims at adding chat rooms, as well as interactive components where users are able to modify elements/images, enabling online game style features. Built with Node.js and Socket.io, with Google Material Design concepts directing the UI design.
+        </div>
+        <div class="projects">
         <center><h3 style="margin-bottom:0px;"><a href="https://mcfli.itch.io/the-touchdown-adventures-of-the-philae-lander">The Touchdown Adventures of the Philae Lander</a></h3>
         Winter 2014<br>
-        <img src="/public/img/tafl.png" style="max-width:100%;margin:10px 0px;"></center>
+        <img src="/public/img/tafl.png" style="border-radius:2px;box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);max-width:100%;margin:10px 0px;"></center>
         This javascript game was built on the Phaser for UCSC course, CMPM 20, Introduction to Game Design. I came up with the overall design concept (a gravity based physics game with maze-like obsticles, which takes place around several of our solar system's planetary bodies), aided in the creation of the physics engine, created a user friend HUD (including calculated speed of player and indicator for unsafe landing speed), collision detection for level endings which was dependant of the player's current speed, the lander sprite and thrust animation, as well as the level design for the planet Earth level.
+        </div>
       </div>
     </div>
-
+    <div class="jumbotron" style="margin-bottom:0px;background-color:rgba(0,15,5,0.90);color:rgb(255,240,250);">
+      <center>
+        Built by Dominic Balassone, 2016<br>
+        Hosted on Heroku, using Node.js
+      </center>
+    </div>
     <!-- Bootstrap core JavaScript
       ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
