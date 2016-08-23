@@ -97,8 +97,9 @@
         Spring 2016<br>
         (not currently hosted, title links to project poster)<br>
         <img src="/public/img/psexample.png" style="border-radius:3px;box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);max-width:100%;margin:10px 0px;"></center>
-
-        https://www.youtube.com/watch?v=dUGT0Y8VBmo
+        Along with a team of students, I designed a system for reading, storing, and displaying hundreds of diagnostics files per second.  To do this, we designed a backend using AWS components S3 and Lambda to fill a RethinkDB(noSQL JSON document based Database). For every write that happens to the database, a "changefeed" (style of RethinkDB query) notifies a Node.js server, which updates all clients, via a Socket.io (websocket interface for Node.js and client browsers), viewing the diagnostics data on their browser in a hand-crafted D3.js visualization, suited to handle real-time updates.<br>
+        <center>Here's a link to a later stage prototype.<br>
+        <a href="https://www.youtube.com/watch?v=dUGT0Y8VBmo">https://www.youtube.com/watch?v=dUGT0Y8VBmo<a></center>
         </div>
         <div class="projects">
         <center><h3 style="margin-bottom:0px;"><a href="chat">Socket.io Real-Time Chat (chat.io)</a></h3>
@@ -109,6 +110,7 @@
         <div class="projects">
         <center><h3 style="margin-bottom:0px;"><a href="https://mcfli.itch.io/the-touchdown-adventures-of-the-philae-lander">The Touchdown Adventures of the Philae Lander</a></h3>
         Winter 2014<br>
+        <!--<iframe src="https://mcfli.itch.io/the-touchdown-adventures-of-the-philae-lander/#canvas"></iframe> -->
         <img src="/public/img/tafl.png" style="border-radius:2px;box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);max-width:100%;margin:10px 0px;"></center>
         This javascript game was built on the Phaser for UCSC course, CMPM 20, Introduction to Game Design. I came up with the overall design concept (a gravity based physics game with maze-like obsticles, which takes place around several of our solar system's planetary bodies), aided in the creation of the physics engine, created a user friend HUD (including calculated speed of player and indicator for unsafe landing speed), collision detection for level endings which was dependant of the player's current speed, the lander sprite and thrust animation, as well as the level design for the planet Earth level.
         </div>
