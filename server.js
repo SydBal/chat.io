@@ -62,8 +62,6 @@ var regiOnline = []
 // list of registered users and passwords (should be in database)
 var registered = {}
 
-
-
 io.on('connection', function(socket){
 
   //Give the socket an initial nickname, mirroring its id
@@ -81,7 +79,7 @@ io.on('connection', function(socket){
 
   //send new message to everyone
   socket.on('chat message', function(msg){
-    io.emit('chat message', socket.nickname + " : " + msg);
+    io.emit('chat message', "<strong>" + socket.nickname + " : </strong>" + msg);
     chatlog.push(msg)
   });
 
@@ -109,7 +107,7 @@ io.on('connection', function(socket){
       allUsers[socket.id] = socket;
       socket.emit('login', [true, ''])
       //sends to everyone
-      io.emit('chat message', socket.nickname + " connected to chat!")
+      io.emit('chat message', "<strong>" + socket.nickname + " connected to chat!</strong>")
       //sends to new user
       socket.emit('chat message', "You can now chat with other logged in users.")
     }else{
