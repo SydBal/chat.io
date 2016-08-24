@@ -22,7 +22,21 @@
     <link rel="stylesheet" type="text/css" href="/scripts/css/ripples.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="/public/css/custom.css">
-
+    <style type="text/css">
+      ::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+}
+ 
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+    </style>
   </head>
   <body>
     <div id="wrapper">
@@ -56,7 +70,7 @@
         <ul class="sidebar-nav">
           <li class="sidebar-brand">
             <a href="#" style="margin-top:10px;">
-            -NAVIGATOR-
+            Online Users
             </a>
           </li>
           <li><a href="#">Dashboard</a></li>
@@ -82,7 +96,7 @@
       </button>
       <!-- Main View -->
       <div class="chat">
-        <div class="chatArea" style="position:fixed;margin-bottom:77px;bottom:0px;overflow-y:scroll;width:100%;margin-top:50px;top:0px;background-color:white;">
+        <div class="chatArea" style="position:fixed;margin-bottom:81px;bottom:0px;overflow-y:scroll;width:100%;margin-top:50px;top:0px;background-color:white;">
           <ul id="messages" style="list-style:none;padding:0px 8px;"></ul>
         </div>
         <div id="inputMessage" style="padding-left:3px;padding-right:70px;padding-left:8px;right:0;margin-top:0px;padding-top:18px;background-color:#009688;" class="form-group has-success">
