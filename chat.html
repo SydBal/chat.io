@@ -83,7 +83,7 @@
       <!-- Main View -->
       <div class="chat">
         <div class="chatArea" style="position:fixed;margin-bottom:77px;bottom:0px;overflow-y:scroll;width:100%;margin-top:50px;top:0px;background-color:white;">
-          <ul id="messages"></ul>
+          <ul id="messages" style="list-style:none;padding:0px 8px;"></ul>
         </div>
         <div id="inputMessage" style="padding-left:3px;padding-right:70px;padding-left:8px;right:0;margin-top:0px;padding-top:18px;background-color:#009688;" class="form-group has-success">
           <input  id="chatfield" type="text" autocomplete="off" id="inputWarning" class="form" style="font-size:18;width:100%;color:white;background-color:#121f1f;border-radius:2px;padding:10px;margin-bottom:0px;height:45px;border:0;" placeholder="Speak your mind..."></input>
@@ -199,7 +199,7 @@
 
       //show newest
       socket.on('chat message', function(msg){
-        $('#messages').append($('<li>').text(msg));
+        $('#messages').append($('<li style="padding:.5px;">').text(msg));
         $('.chatArea').scrollTop($('.chatArea')[0].scrollHeight);
       });
       
