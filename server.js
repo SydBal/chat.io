@@ -107,7 +107,7 @@ io.on('connection', function(socket){
       allUsers[socket.id] = socket;
       socket.emit('login', [true, ''])
       //sends to everyone
-      io.emit('chat message', "<strong>" + socket.nickname + " connected to chat!</strong>")
+      io.emit('chat message', "<strong style='color:#009688'>" + socket.nickname + " connected to chat!</strong>")
       //sends to new user
       socket.emit('chat message', "You can now chat with other logged in users.")
     }else{
