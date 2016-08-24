@@ -79,15 +79,9 @@ io.on('connection', function(socket){
   }
   console.log('# of connected users: '+len);
 
-  //sends to everyone
-  io.emit('chat message', socket.id + " connected to chat!")
-
-  //sends to new user
-  socket.emit('chat message', "You can now chat with other logged in users.")
-
   //send new message to everyone
   socket.on('chat message', function(msg){
-    io.emit('chat message', msg);
+    io.emit('chat message', socket.nickname + " : " + msg);
     chatlog.push(msg)
   });
 
@@ -114,6 +108,10 @@ io.on('connection', function(socket){
       socket.nickname = usr;
       allUsers[socket.id] = socket;
       socket.emit('login', [true, ''])
+      //sends to everyone
+      io.emit('chat message', socket.nickname + " connected to chat!")
+      //sends to new user
+      socket.emit('chat message', "You can now chat with other logged in users.")
     }else{
       //wrong pass
       socket.emit('login', [false, 'wrongpass'])
