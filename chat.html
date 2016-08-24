@@ -38,10 +38,10 @@
               <h4>Create a username and password OR login with your already existing credentials.</h4>
               <form>
               <fieldset class="form-group">
-                <input type="email" class="form-control mod" id="InputEmail" placeholder="Username">
+                <input type="email" class="form-control modalOn" id="InputEmail" placeholder="Username">
               </fieldset>
               <fieldset class="form-group">
-                <input type="password" class="form-control mod" id="InputPassword" placeholder="Password">
+                <input type="password" class="form-control modalOn" id="InputPassword" placeholder="Password">
               </fieldset>
             </div>
             <div class="modal-footer">
@@ -82,15 +82,14 @@
       </button>
       <!-- Main View -->
       <div class="chat">
-        <div class="chatArea" style="position:fixed;margin-bottom:77px;bottom:0px;overflow-y:scroll;width:100%;margin-top:50px;top:0px;background-color:white;border-bottom: medium solid #009688;">
+        <div class="chatArea" style="position:fixed;margin-bottom:77px;bottom:0px;overflow-y:scroll;width:100%;margin-top:50px;top:0px;background-color:white;">
           <ul id="messages"></ul>
         </div>
-        <div id="inputMessage" style="padding-left:3px;padding-right:62px;right:0;margin-top:0px;padding-top:15px;background-color:#009688;" class="form-group label-floating">
-          <label for="chatfield" class="control-label" style="margin-top:32px;">Give your input...</label>
-          <input  id="chatfield" type="text" autocomplete="off" class="form form-control" style="color:white;background-color:#121f1f;border-radius:2px;padding:10px;"></input>
+        <div id="inputMessage" style="padding-left:3px;padding-right:68px;padding-left:8px;right:0;margin-top:0px;padding-top:18px;background-color:#009688;" class="form-group has-success">
+          <input  id="chatfield" type="text" autocomplete="off" id="inputWarning" class="form form-control" style="box-shadow: inset 0px 0px 5px rgba(255,255,255,.9);color:white;background-color:#121f1f;border-radius:2px;padding:10px;margin-bottom:0px;height:45px;" placeholder="Speak your mind..."></input>
           <p class="help-block" style="color:white;">Have fun chatting!</p>
         </div>
-        <a href="javascript:void(0)" class="btn btn-success btn-fab" id="sendbutton" style="backgroud-color:#4CAF50; position: fixed; bottom: 0;right:0;margin-bottom: 12px; margin-right:5px;"><i class="material-icons" style="margin-top:2px;margin-left:1px;">message</i></a>
+        <a href="javascript:void(0)" class="btn btn-success btn-fab" id="sendbutton" style="background-color:#4CAF50; position: fixed; bottom: 0;right:0;margin-bottom: 12px; margin-right:8px;"><i class="material-icons" style="margin-top:2px;margin-left:1px;">message</i></a>
 
 
 
@@ -162,21 +161,24 @@
       
       //try to login via socket when clicking on login button
       $('#loginbut').on('click', function(event) {
-        socket.emit('login', [$('#InputEmail').val(), $('#InputPassword').val()])
-        document.getElementById('successtext').innerHTML = '<h4>Contacting Server...</h4>'
-        document.getElementById('successtext').style.color = 'yellow'
+        checkLogin()
       });;
       
       //set enter to be the submit key for login modal
-      $(".mod").keypress(function(event) {
+      $(".modalOn").keypress(function(event) {
         if($('#myModal').is(":visible")){
           if (event.which == 13) {
-            socket.emit('login', [$('#InputEmail').val(), $('#InputPassword').val()])
-            document.getElementById('successtext').innerHTML = '<h4>Contacting Server...</h4>'
-            document.getElementById('successtext').style.color = 'yellow'
+            checkLogin()
           }
         }
       });
+
+      //Check server for valid login info
+      function checkLogin(){
+        socket.emit('login', [$('#InputEmail').val(), $('#InputPassword').val()])
+        document.getElementById('successtext').innerHTML = '<h4>Contacting Server...</h4>'
+        document.getElementById('successtext').style.color = 'yellow'
+      }
 
       //MESSAGES
       //send
