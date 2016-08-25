@@ -213,7 +213,7 @@
 
       //show newest
       socket.on('chat message', function(msg){
-        $('#messages').append($('<li style="padding:.5px;">').text(msg));
+        $('#messages').append($('<li style="padding:.5px;">').css(msg));
         $('.chatArea').scrollTop($('.chatArea')[0].scrollHeight);
       });
       
