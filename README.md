@@ -1,3 +1,4 @@
 # chat.io
+## By Dominic Balassone
 
-Come at me bro
+Built on node.js, using Socket.io.
