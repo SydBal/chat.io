@@ -88,8 +88,8 @@
       </div>
 
       <!-- Sidebar -->
-      <button id="menutoggle" style="right:0;z-index:1001;position:fixed;margin:6px;top:0;padding-right:15;padding-left:15" type="button" class="btn btn-raised btn-default ">
-      <<
+      <button id="menutoggle" style="right:0;z-index:1001;position:fixed;margin:6px;top:0;margin:6px;padding:5px 15px;" type="button" class="btn btn-raised btn-default ">
+      <i id="sidebar_btn_txt" class="material-icons" style="padding:1px;">keyboard_arrow_left</i>
       </button>
 
       <!-- Main View -->
@@ -229,11 +229,11 @@
         var tCon = $('#sidebar-wrapper').css("width")
         if(tCon=="225px"){
           $("#sidebar-wrapper").animate({width: 0},200,"linear",function(){
-            $("#menutoggle").text("<<")
+            $("#sidebar_btn_txt").text("keyboard_arrow_left")
           });
         }else{
           $("#sidebar-wrapper").animate({width: 225},200,"linear",function(){
-            $("#menutoggle").text(">>")
+            $("#sidebar_btn_txt").text("keyboard_arrow_right")
           });
         }
       });
