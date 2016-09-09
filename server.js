@@ -14,7 +14,7 @@ io.use(function(socket, next) {
   var handshakeData = socket.request;
   // make sure the handshake data looks good as before
   // if error do this:
-    // next(new Error('not authorized');
+  // next(new Error('not authorized');
   // else just call next
   next();
 });
@@ -60,13 +60,15 @@ io.on('connection', function(socket){
   var len = 0;
   for (var users in allUsers) {
       len++;
-  }
+  };
   console.log('# of connected users: '+len);
 
   //send new message to everyone
   socket.on('chat message', function(msg){
+    //let sending user know that message is recieved
+    socket.emit('message recieved', true);
     io.emit('chat message', socket.nickname + " : " + msg);
-    chatlog.push(msg)
+    chatlog.push(msg);
   });
 
   // handle disconnecting users
@@ -86,6 +88,7 @@ io.on('connection', function(socket){
     if(usr.length < 2 || pas.length <2){
       //too short
       socket.emit('login', [false, 'tooshort'])
+    //include database query here, check for registered users
     }else if(registered[usr] == undefined || registered[usr] == pas) {
       //legal
       registered[usr] = pas;
@@ -104,5 +107,5 @@ io.on('connection', function(socket){
 });
 
 http.listen(3000, function(){
-  console.log('listening on *:3000');
+  console.log('Chat.io serving! Listening on *:3000 for http requests.');
 });
