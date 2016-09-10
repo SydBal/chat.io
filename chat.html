@@ -54,7 +54,7 @@
         </div>
       </div>
       <!-- Sidebar -->
-      <div id="sidebar-wrapper">
+      <div id="sidebar-wrapper"">
         <ul class="sidebar-nav">
           <li class="sidebar-brand">
             <a href="#" style="margin-top:10px;">
@@ -75,13 +75,13 @@
             <i class="material-icons" style="padding:1px;">menu</i>
           </div>
           <!-- Dropdown -->
-          <div id="menu" style="height:100px; width:100px; background-color:white;top:50px;position:absolute">
-            <li class="sidebar-brand">
+          <div id="menu" hidden="true" style="background-color:#009600;top:50px;position:absolute;box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);padding:10px;">
+            <li>
               <a href="#" style="margin-top:10px;">
               Chat Rooms
               </a>
             </li>
-            <li><a href="#">Lobby</a></li>
+            <li><div>Lobby</div></li>
             <li><a href="#">Channel 1</a></li>
             <li><a href="#">Channel 2</a></li>
           </div>
@@ -243,7 +243,7 @@
 
       //menu toggle
       $('#menu_btn').click(function(){
-        $('#menu').toggle('fast')
+        $('#menu').slideToggle({easing:"linear"})
       })
     </script>
   </body>
