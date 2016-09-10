@@ -38,12 +38,13 @@
             <div class="modal-body">
               <h4>Create a username and password OR login with your already existing credentials.</h4>
               <form>
-              <fieldset class="form-group">
-                <input class="form-control modalOn" id="InputEmail" placeholder="Username">
-              </fieldset>
-              <fieldset class="form-group">
-                <input type="password" class="form-control modalOn" id="InputPassword" placeholder="Password">
-              </fieldset>
+                <fieldset class="form-group">
+                  <input class="form-control modalOn" id="InputEmail" placeholder="Username">
+                </fieldset>
+                <fieldset class="form-group">
+                  <input type="password" class="form-control modalOn" id="InputPassword" placeholder="Password">
+                </fieldset>
+                </form>
             </div>
             <div class="modal-footer">
               <div id='successtext'></div>
@@ -67,27 +68,32 @@
       </div>
 
       <!-- NavBar -->
-      <div id="myNav" class="navbar navbar-default navbar-fixed-top" style="max-height:50px;">
-        <div class="container-fluid">
-          <div class="navbar-header">
+      <div id="myNav" class="navbar navbar-default navbar-fixed-top" style="max-height:50px;z-index:1">
 
-            <div class="btn btn-raised btn-default dropdown" style="margin:6px;padding:5px 15px;position:absolute;left:0;"><i class="material-icons" style="padding:1px;" href="bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown">menu</i>
-            
-              <ul class="dropdown-menu">
-                <li><a href="javascript:void(0)">Action</a></li>
-                <li><a href="javascript:void(0)">Another ion</a></li>
-                <li><a href="javascript:void(0)">Somet else here</a></li>
-                <li class="divider"></li>
-                <li><a href="javascript:void(0)">Separated link</a></li>
-              </ul>
-            
-            </div>
+        <div class="container-fluid" style="padding-left:0;">
+          <div id="menu_btn" class="btn btn-raised btn-default" style="margin:6px;padding:5px 15px;position:absolute;left:0;">
+            <i class="material-icons" style="padding:1px;">menu</i>
           </div>
+          <!-- Dropdown -->
+          <div id="menu" style="height:100px; width:100px; background-color:white;top:50px;position:absolute">
+            <li class="sidebar-brand">
+              <a href="#" style="margin-top:10px;">
+              Chat Rooms
+              </a>
+            </li>
+            <li><a href="#">Lobby</a></li>
+            <li><a href="#">Channel 1</a></li>
+            <li><a href="#">Channel 2</a></li>
+          </div>
+
+          <!-- Title -->
           <center><h3 style="margin-top:13px">chat.io</h3></center>
+          </div>
         </div>
       </div>
 
-      <!-- Sidebar -->
+
+      <!-- Sidebar Button-->
       <button id="menutoggle" style="right:0;z-index:1001;position:fixed;margin:6px;top:0;margin:6px;padding:5px 15px;" type="button" class="btn btn-raised btn-default">
       <i id="sidebar_btn_txt" class="material-icons" style="padding:1px;">keyboard_arrow_left</i>
       </button>
@@ -102,9 +108,6 @@
           <p class="help-block" style="color:white;">Have fun chatting!</p>
         </div>
         <div class="btn btn-success btn-raised btn-fab" id="sendbutton" style="background-color:#4CAF50; position: fixed; bottom: 0;right:0;margin-bottom: 12px; margin-right:8px;"><i class="material-icons" style="margin-top:2px;margin-left:1px;">message</i></div>
-
-
-
       </div>
     </div>
     <!-- Bootstrap core JavaScript
@@ -237,6 +240,11 @@
           });
         }
       });
+
+      //menu toggle
+      $('#menu_btn').click(function(){
+        $('#menu').toggle('fast')
+      })
     </script>
   </body>
 </html>
