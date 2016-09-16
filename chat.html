@@ -190,7 +190,7 @@
 
       //Check server for valid login info
       function checkLogin(){
-        socket.emit('login', [$('#InputEmail').val(), $('#InputPassword').val()])
+        socket.emit('login', {name:$('#InputEmail').val(), pass:$('#InputPassword').val()})
         document.getElementById('successtext').innerHTML = '<h4>Contacting Server...</h4>'
         document.getElementById('successtext').style.color = 'yellow'
       }

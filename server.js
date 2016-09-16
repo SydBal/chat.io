@@ -83,8 +83,8 @@ io.on('connection', function(socket){
 
   //handle login requestion
   socket.on('login', function(creds){
-    usr = creds[0]
-    pas = creds[1]
+    usr = creds.name
+    pas = creds.pass
     if(usr.length < 2 || pas.length <2){
       //too short
       socket.emit('login', [false, 'tooshort'])
