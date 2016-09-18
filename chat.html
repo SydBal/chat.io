@@ -135,7 +135,7 @@
       var socket = io.connect(window.location.hostname);
       
       socket.on('login', function(success){
-        if(success[0]){
+        if(success.result){
           document.getElementById('successtext').innerHTML = '<h4>Login Successful!</h4>'
           document.getElementById('successtext').style.color = "#59B75C"
           setTimeout(function(){
@@ -145,10 +145,10 @@
                                'opacity': 1});
           },1500)
         }else{
-          if(success[1] == 'wrongpass'){
+          if(success.msg == 'wrongpass'){
             document.getElementById('successtext').innerHTML = '<h4>Login Unauthorized!</h4>'
             document.getElementById('successtext').style.color = 'red'
-          }else if(success[1] == 'tooshort'){
+          }else if(success.msg == 'tooshort'){
             document.getElementById('successtext').innerHTML = '<h4>Username and Password must contain at least 2 characters!</h4>'
             document.getElementById('successtext').style.color = 'red'
           }

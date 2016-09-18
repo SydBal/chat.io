@@ -7,6 +7,7 @@ var express = require('express'),
     app = express(),
     http = require('http').createServer(app),
     path = require('path')
+    crypto = require('crypto')
     io = require('socket.io')(http);
 
 
@@ -84,24 +85,24 @@ io.on('connection', function(socket){
   //handle login requestion
   socket.on('login', function(creds){
     usr = creds.name
-    pas = creds.pass
+    pas = encrypt(creds.pass)
     if(usr.length < 2 || pas.length <2){
       //too short
-      socket.emit('login', [false, 'tooshort'])
+      socket.emit('login', {result:false, msg:'tooshort'})
     //include database query here, check for registered users
     }else if(registered[usr] == undefined || registered[usr] == pas) {
       //legal
       registered[usr] = pas;
       socket.nickname = usr;
       allUsers[socket.id] = socket;
-      socket.emit('login', [true, ''])
+      socket.emit('login', {result:true, msg:''})
       //sends to everyone
       io.emit('chat message', socket.nickname + " connected to chat!")
       //sends to new user
       socket.emit('chat message', "You can now chat with other logged in users.")
     }else{
       //wrong pass
-      socket.emit('login', [false, 'wrongpass'])
+      socket.emit('login', {result:false, msg:'wrongpass'})
     }
   });
 });
@@ -109,3 +110,23 @@ io.on('connection', function(socket){
 http.listen(3000, function(){
   console.log('Chat.io serving! Listening on *:3000 for http requests.');
 });
+
+/*Security for user login info*/
+//these should belong in environment variables
+var algorithm = 'aes-256-ctr',
+    password = 'chatio4life'; //the vulnerabilty
+
+function encrypt(text){
+  var cipher = crypto.createCipher(algorithm,password)
+  var crypted = cipher.update(text,'utf8','hex')
+  crypted += cipher.final('hex');
+  return crypted;
+}
+
+//not yet used
+function decrypt(text){
+  var decipher = crypto.createDecipher(algorithm,password)
+  var dec = decipher.update(text,'hex','utf8')
+  dec += decipher.final('utf8');
+  return dec;
+}
