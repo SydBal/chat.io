@@ -82,7 +82,7 @@
             <li>Inline Scripts
                   <div class="checkbox" style="display:inline;right:10px;position:absolute;margin-top:-4px">
                     <label>
-                      <input id="ch1" type="checkbox" checked="">
+                      <input id="ch1" type="checkbox">
                     </label>
                   </div>
             </li>
@@ -258,7 +258,13 @@
 
       //show newest
       socket.on('chat message', function(msg){
-        $('#messages').append($('<li style="padding:.5px;">').html(msg));
+
+        //script tag check
+        if($('#ch1').is(':checked')){
+          $('#messages').append($('<li style="padding:.5px;">').html(msg));
+        }else{
+          $('#messages').append($('<li style="padding:.5px;">').text(msg));
+        }
         $('.chatArea').scrollTop($('.chatArea')[0].scrollHeight);
       });
       
