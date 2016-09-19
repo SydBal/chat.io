@@ -69,7 +69,6 @@
 
       <!-- NavBar -->
       <div id="myNav" class="navbar navbar-default navbar-fixed-top" style="max-height:50px;z-index:1">
-
         <div class="container-fluid" style="padding-left:0;">
           <div id="menu_btn" class="btn btn-raised btn-default" style="margin:6px;padding:5px 15px;position:absolute;left:0;z-index:1001">
             <i class="material-icons" style="padding:1px;">menu</i>
@@ -89,6 +88,9 @@
             <!--<li><div>Lobby</div></li>-->
             <li style="margin-top:3px"><a href="javascript: logout();">Logout</a></li>
             <!--<li><a href="#">Channel 2</a></li>-->
+            <li>
+              
+            </li>
             </h4>
           </div>
 
@@ -245,6 +247,8 @@
 
       //send message
       function sendMsg(){
+        //set spinner to notify user that message is in transit
+
         //check for empty chat field
         if($('#chatfield').val() != ''){
           socket.emit('chat message', $('#chatfield').val());

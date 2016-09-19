@@ -126,6 +126,7 @@ io.on('connection', function(socket){
 
   socket.on('disconnect', function(data){
     removeOnline(socket)
+    io.emit('chat message', socket.nickname + " disconnected.";
   });
 });
 
