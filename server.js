@@ -117,6 +117,8 @@ io.on('connection', function(socket){
   });
 
   socket.on('logout', function(data){
+    //inform chatters
+    io.emit('chat message', socket.nickname + " disconnected.");
     //reset nickname to socket.id
     socket.nickname = socket.id;
     //remove registered user from online
@@ -124,8 +126,11 @@ io.on('connection', function(socket){
   });
 
   socket.on('disconnect', function(data){
+    //inform chatters IF the user was logged in
+    if(socket.id != socket.nickname && socket.nickname != undefined){
+      io.emit('chat message', socket.nickname + " disconnected.");
+    }
     removeOnline(socket)
-    io.emit('chat message', socket.nickname + " disconnected.");
   });
 });
 
