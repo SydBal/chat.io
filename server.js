@@ -52,8 +52,6 @@ function removeOnline(socket){
 // list of registered users and passwords (should be in database)
 var registered = {}
 
-
-
 io.on('connection', function(socket){
 
   //let the user know they have created a fresh connection to the socket server
