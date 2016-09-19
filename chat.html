@@ -144,11 +144,14 @@
 
       //Show Login Modal
       function showLogin(){
-          $('#myModal').modal({
-            //set login modal to be unexitable
-            backdrop: 'static',
-            keyboard: false
-          },'show');
+        $('#myModal').modal({
+          //set login modal to be unexitable
+          backdrop: 'static',
+          keyboard: false
+        },'show');
+        setTimeout(function(){
+          $('#InputEmail').focus()
+        }, 1000);  
       }
 
       function logout(){
@@ -209,7 +212,7 @@
       //on ready
       $(document).ready(function(){
         $.material.init()
-        $('.dropdown-toggle').dropdown();
+        showLogin()
       });
       
       //try to login via socket when clicking on login button
