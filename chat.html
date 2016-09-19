@@ -124,33 +124,41 @@
     <script type="text/javascript" src="/scripts/js/ripples.min.js"></script>
     <!-- My JS -->
     <script>
-      //show modal right away
-      //set login modal to be unexitable
-      $('#myModal').modal({
-        backdrop: 'static',
-        keyboard: false
-      },'show');
-      
+
       //Socket stuff
       var socket = io.connect(window.location.hostname);
       
+      //Any time we connect to the server, the server triggers this
+      socket.on('serverConnected',function(data){
+        //show login modal to enable login
+        $('#myModal').modal({
+          //set login modal to be unexitable
+          backdrop: 'static',
+          keyboard: false
+        },'show');
+      })
+
       socket.on('login', function(success){
         if(success.result){
-          document.getElementById('successtext').innerHTML = '<h4>Login Successful!</h4>'
-          document.getElementById('successtext').style.color = "#59B75C"
+          $('#successtext').html('<h4>Login Successful!</h4>')
+          $('#successtext').css("color","#59B75C")
           setTimeout(function(){
             $('#myModal').modal('hide');
             $('.chat').fadeIn(2000);
             $('.topinfo').css({'display':'inline-block',
                                'opacity': 1});
+            $('#successtext').html('')
+            $('#InputPassword').val('')
           },1500)
         }else{
           if(success.msg == 'wrongpass'){
             document.getElementById('successtext').innerHTML = '<h4>Login Unauthorized!</h4>'
             document.getElementById('successtext').style.color = 'red'
+            $('#InputPassword').val('')
           }else if(success.msg == 'tooshort'){
             document.getElementById('successtext').innerHTML = '<h4>Username and Password must contain at least 2 characters!</h4>'
             document.getElementById('successtext').style.color = 'red'
+            $('#InputPassword').val('')
           }
         }
       });
@@ -163,6 +171,7 @@
                   'max-height':'100%'
            });
       });
+
       //on page finished load
       $(window).load(function(){
       

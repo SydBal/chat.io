@@ -32,9 +32,7 @@ app.get('/', function(req, res) {
 var port = process.env.PORT || 3000;
 http.listen(port);
 
-/*Logs
- */
-
+/*Logs*/
 // contains a list of all chat that goes on in a room
 var chatlog = []
 
@@ -51,9 +49,12 @@ var registered = {}
 
 io.on('connection', function(socket){
 
+  //let the user know they have created a fresh connection to the socket server
+  socket.emit("serverConnected", "You have been connected to chat.io's server.")
+
+  //KEEP TRACK OF USER
   //Give the socket an initial nickname, mirroring its id
   socket.nickname = socket.id;
-
   //add user to list of connected users
   allUsers[socket.id] = socket;
 
@@ -61,8 +62,9 @@ io.on('connection', function(socket){
   var len = 0;
   for (var users in allUsers) {
       len++;
+        console.log('# of connected users: '+len);
   };
-  console.log('# of connected users: '+len);
+
 
   //send new message to everyone
   socket.on('chat message', function(msg){
