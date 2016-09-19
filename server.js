@@ -41,6 +41,14 @@ var allUsers = {}
 
 // list of logged in users
 var regiOnline = []
+//delete a user from the list
+function removeOnline(socket){
+  for(var i = regiOnline.length - 1; i >= 0; i--) {
+    if(regiOnline[i].id == socket.id) {
+      regiOnline.splice(i, 1);
+    }
+  }    
+}
 
 // list of registered users and passwords (should be in database)
 var registered = {}
@@ -64,7 +72,6 @@ io.on('connection', function(socket){
       len++;
         console.log('# of connected users: '+len);
   };
-
 
   //send new message to everyone
   socket.on('chat message', function(msg){
@@ -97,6 +104,8 @@ io.on('connection', function(socket){
       registered[usr] = pas;
       socket.nickname = usr;
       allUsers[socket.id] = socket;
+      //add user to online member
+      regiOnline.push({usr:socket.nickname,id:socket.id})
       socket.emit('login', {result:true, msg:''})
       //sends to everyone
       io.emit('chat message', socket.nickname + " connected to chat!")
@@ -106,6 +115,17 @@ io.on('connection', function(socket){
       //wrong pass
       socket.emit('login', {result:false, msg:'wrongpass'})
     }
+  });
+
+  socket.on('logout', function(data){
+    //reset nickname to socket.id
+    socket.nickname = socket.id;
+    //remove registered user from online
+    removeOnline(socket)
+  });
+
+  socket.on('disconnect', function(data){
+    removeOnline(socket)
   });
 });
 

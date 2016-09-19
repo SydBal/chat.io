@@ -87,7 +87,7 @@
                   </div>
             </li>
             <!--<li><div>Lobby</div></li>-->
-            <li style="margin-top:3px"><a href="javascript: showLogin();$('#menu').slideToggle({easing:'linear'});">Logout</a></li>
+            <li style="margin-top:3px"><a href="javascript: logout();">Logout</a></li>
             <!--<li><a href="#">Channel 2</a></li>-->
             </h4>
           </div>
@@ -150,10 +150,10 @@
       }
 
       function logout(){
+        //Inform the server
+        socket.emit('logout', "I can put anything here because I don't use this argument on the server");
         //hide left menu
         $('#menu').slideToggle({easing:"linear"})
-        //Inform the server
-        socket.emit('logout', socket.nickname)
         //Show login modal to enable relog
         showLogin()
       }
