@@ -136,7 +136,14 @@
           backdrop: 'static',
           keyboard: false
         },'show');
-      })
+      });
+
+      //Client disconnects from server (server turns off, client loses internet)
+      socket.on('disconnect', function(){
+        // Show user in chat that they disconnected
+        $('#messages').append($('<li style="padding:.5px;">').html("<div style='color:red'>You have disconnected from chat.io. Server may be down.</div>"));
+        $('.chatArea').scrollTop($('.chatArea')[0].scrollHeight);
+      });
 
       socket.on('login', function(success){
         if(success.result){
@@ -180,7 +187,6 @@
       $(document).ready(function(){
         $.material.init()
         $('.dropdown-toggle').dropdown();
-      
       });
       
       //try to login via socket when clicking on login button
