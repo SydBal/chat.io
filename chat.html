@@ -75,7 +75,7 @@
             <i class="material-icons" style="padding:1px;">menu</i>
           </div>
           <!-- Dropdown -->
-          <div id="menu" hidden="true" style="list-style:none;background-color:#000000;top:0px;position:absolute;box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);padding:10px;">
+          <div id="menu" hidden="true" style="list-style:none;background-color:#FFFFFF;color:#009688;top:0px;position:absolute;box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);padding:10px;">
 
             <div style="left:0;"><h3 style="margin-top:2px;margin-left:62px">Settings</h3></div>
             <h4 style="padding-top:6px;margin-bottom:0px">
@@ -86,9 +86,9 @@
                     </label>
                   </div>
             </li>
-            <li><div>Lobby</div></li>
-            <li><a href="#">Channel 1</a></li>
-            <li><a href="#">Channel 2</a></li>
+            <!--<li><div>Lobby</div></li>-->
+            <li style="margin-top:3px"><a href="javascript: showLogin();$('#menu').slideToggle({easing:'linear'});">Logout</a></li>
+            <!--<li><a href="#">Channel 2</a></li>-->
             </h4>
           </div>
 
@@ -137,12 +137,26 @@
       //Any time we connect to the server, the server triggers this
       socket.on('serverConnected',function(data){
         //show login modal to enable login
-        $('#myModal').modal({
-          //set login modal to be unexitable
-          backdrop: 'static',
-          keyboard: false
-        },'show');
+        showLogin()
       });
+
+      //Show Login Modal
+      function showLogin(){
+          $('#myModal').modal({
+            //set login modal to be unexitable
+            backdrop: 'static',
+            keyboard: false
+          },'show');
+      }
+
+      function logout(){
+        //hide left menu
+        $('#menu').slideToggle({easing:"linear"})
+        //Inform the server
+        socket.emit('logout', socket.nickname)
+        //Show login modal to enable relog
+        showLogin()
+      }
 
       //Client disconnects from server (server turns off, client loses internet)
       socket.on('disconnect', function(){
