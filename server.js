@@ -2,15 +2,14 @@
 // Handles user authencation, socket.io chat, and client managemnt
 // Logging will be handled by RethinkDB
 
-var express = require('express'),
-    path =require('path'),
-    app = express(),
-    http = require('http').createServer(app),
-    path = require('path')
-    crypto = require('crypto')
-    io = require('socket.io')(http);
+var path    = require('path'),
+    crypto  = require('crypto'),
+    express = require('express'),
+    app     = express(),
+    http    = require('http').createServer(app),
+    io      = require('socket.io')(http);
 
-
+//called every time a connection is made
 io.use(function(socket, next) {
   var handshakeData = socket.request;
   // make sure the handshake data looks good as before
