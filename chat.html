@@ -207,12 +207,11 @@
 
       //on page finished load
       $(window).load(function(){
-      
+        showLogin()
       })
-      //on ready
+      //on ready preload
       $(document).ready(function(){
         $.material.init()
-        showLogin()
       });
       
       //try to login via socket when clicking on login button
