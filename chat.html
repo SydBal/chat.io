@@ -253,13 +253,10 @@
         //TODO::
         //set spinner to notify user that message is in transit
 
-        //disable input field to prevent mutliple duplicate messages
-        //conditional prevents field locking
-        if($('#chatfield').prop('disabled')==true){
-          $('#chatfield').prop('disabled', true)
-        }
         //check for empty chat field
         if($('#chatfield').val() != ''){
+          //disable input field to prevent mutliple duplicate messages
+          $('#chatfield').prop('disabled', true)
           socket.emit('chat message', $('#chatfield').val());
         }
       }
@@ -268,7 +265,9 @@
       socket.on('message recieved', function(success){
         //re-enable input field and clear it
         $('#chatfield').val('');
+
         $('#chatfield').prop('disabled', false)
+
         //focus it to allow for multiple inputs in succession
         $('#chatfield').focus()
       })
