@@ -257,6 +257,7 @@
         if($('#chatfield').val() != ''){
           //disable input field to prevent mutliple duplicate messages
           $('#chatfield').prop('disabled', true)
+          $('#chatfield').blur()
           socket.emit('chat message', $('#chatfield').val());
         }
       }
