@@ -28,7 +28,7 @@ app.get('/', function(req, res) {
 });
 
 //for heroku
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 80;
 http.listen(port);
 
 /*Logs*/
