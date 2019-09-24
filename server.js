@@ -29,7 +29,6 @@ app.get('/', function(req, res) {
 
 //for heroku
 var port = process.env.PORT || 80;
-http.listen(port);
 
 /*Logs*/
 // contains a list of all chat that goes on in a room
@@ -132,8 +131,8 @@ io.on('connection', function(socket){
   });
 });
 
-http.listen(3000, function(){
-  console.log('Chat.io serving! Listening on *:3000 for http requests.');
+http.listen(port, function(){
+  console.log('Chat.io serving! Listening on *:80? for http requests.');
 });
 
 /*Security for user login info*/
